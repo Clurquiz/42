@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 12:14:47 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/19 17:05:09 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/20 23:16:31 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,20 @@ char	ft_test_strmapi(unsigned int i, char s)
 	s = s + 1;
 	printf("%d ", i);
 	return (s);
+}
+
+void	ft_test_lstiter(t_list *elem)
+{
+	elem->content_size = 42;
+}
+
+t_list	*ft_test_lstmap(t_list *elem)
+{
+	//t_list	*tmp;
+
+	//tmp = lstnew("ecole42", sizeof("ecole42"));
+	elem->content = ft_strdup("ecole42");
+	return (elem);
 }
 
 void	ft_del_lst(void *content, size_t content_size)
@@ -1229,7 +1243,7 @@ printf("************************************************************************
 
 
 // *****************************************************************************
-// ******************************* PARTIE BONUS  *******************************
+// ******************************* PARTIE BONUS ********************************
 // *****************************************************************************
 
 printf(COLOR_BIG_TITLE "\n\n\n*****************************************************************************\n");
@@ -1294,6 +1308,8 @@ printf("************************************************************************
 	ft_lstadd(&list2, ft_lstnew(NULL, sizeof("TEST")));
 	ft_lstadd(&list2, ft_lstnew("TEST2", sizeof("TEST2")));
 	ft_aff_list(list2);
+
+
 // === LSTDELONE ===============================================================
 
 	printf(COLOR_TITLE "\n\n---------- LSTDELONE ----------\n\n" COLOR_RESET);
@@ -1307,6 +1323,56 @@ printf("************************************************************************
 // === LSTDEL ==================================================================
 
 	printf(COLOR_TITLE "\n\n---------- LSTDEL ----------\n\n" COLOR_RESET);
+	
+	printf("AVANT :\n");
+	ft_aff_list(list2);
+	ft_lstdel(&list2, &ft_del_lst);
+	
+	printf("\nAPRES :\n");
+	ft_aff_list(list2);
+
+
+// === LSTITER =================================================================
+
+	printf(COLOR_TITLE "\n\n---------- LSTITER ----------\n\n" COLOR_RESET);
+
+	t_list		*list3;
+
+	list3 = NULL;
+	ft_lstadd(&list3, ft_lstnew("cocos", sizeof("cocos")));
+	ft_lstadd(&list3, ft_lstnew("les", sizeof("les")));
+	ft_lstadd(&list3, ft_lstnew("hello", sizeof("hello")));
+
+	printf("AVANT :\n");
+	ft_aff_list(list3);
+	ft_lstiter(list3, &ft_test_lstiter);
+
+	printf("\nAPRES : Met tous les content_size à 42\n");
+	ft_aff_list(list3);
+	
+// === LSTMAP ==================================================================
+
+	printf(COLOR_TITLE "\n\n---------- LSTMAP ----------\n\n" COLOR_RESET);
+	
+	printf("AVANT :\n");
+	ft_aff_list(list3);
+	ft_lstmap(list3, &ft_test_lstmap);
+
+	printf("\nAPRES : Met tous les content à \"ecole42\" et retourne la liste\n");
+	ft_aff_list(list3);
+
+
+// *****************************************************************************
+// ******************************* FCTs FACULTATIVES ***************************
+// *****************************************************************************
+
+printf(COLOR_BIG_TITLE "\n\n\n*****************************************************************************\n");
+printf("***************************** FCTs FACULTATIVES *****************************\n");
+printf("*****************************************************************************\n" COLOR_RESET);
+
+// === COUNTWORDS ==================================================================
+
+	printf(COLOR_TITLE "\n\n---------- COUNTWORDS ----------\n\n" COLOR_RESET);
 
 	return (0);
 }
