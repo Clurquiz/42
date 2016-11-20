@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 20:24:04 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/18 16:59:51 by curquiza         ###   ########.fr       */
+/*   Created: 2016/11/07 16:20:35 by curquiza          #+#    #+#             */
+/*   Updated: 2016/11/07 18:40:08 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+int		ft_atoi(const char *str)
 {
-	if (alst)
+	int		neg;
+	int		result;
+
+	neg = 1;
+	result = 0;
+	while (*str >= 0 && *str <= 32)
+		str++;
+	if (*str == '-')
 	{
-		if (*alst)
-			(*del)((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		neg = -1;
+		str++;
 	}
+	else if (*str == '+')
+		str++;
+	while (*str && *str >= '0' && *str <= '9')
+	{
+		result = result * 10 + *str - '0';
+		str++;
+	}
+	return (result * neg);
 }

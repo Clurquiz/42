@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 20:24:04 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/18 16:59:51 by curquiza         ###   ########.fr       */
+/*   Created: 2016/11/09 18:20:45 by curquiza          #+#    #+#             */
+/*   Updated: 2016/11/09 18:50:37 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	if (alst)
+	size_t			i;
+	unsigned char	c2;
+	unsigned char	*s2;
+
+	i = 0;
+	c2 = (unsigned char)c;
+	s2 = (unsigned char *)s;
+	while (i < n)
 	{
-		if (*alst)
-			(*del)((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		if (s2[i] == c2)
+			return (s2 + i);
+		i++;
 	}
+	return (NULL);
 }

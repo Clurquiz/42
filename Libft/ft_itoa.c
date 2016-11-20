@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 20:24:04 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/18 16:59:51 by curquiza         ###   ########.fr       */
+/*   Created: 2016/11/07 18:59:29 by curquiza          #+#    #+#             */
+/*   Updated: 2016/11/20 14:21:17 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+char			*ft_itoa(int n)
 {
-	if (alst)
+	char	*str;
+	int		size;
+
+	size = ft_intlen(n);
+	if (!(str = (char *)malloc(sizeof(*str) * (size + 1))))
+		return (NULL);
+	if (n < 0)
+		*str = '-';
+	if (n == 0)
 	{
-		if (*alst)
-			(*del)((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		*str = '0';
+		return (str);
 	}
+	str[size--] = '\0';
+	while (n != 0)
+	{
+		if (n < 0)
+			str[size--] = '0' - n % 10;
+		else
+			str[size--] = '0' + n % 10;
+		n = n / 10;
+	}
+	return (str);
 }

@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 20:24:04 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/18 16:59:51 by curquiza         ###   ########.fr       */
+/*   Created: 2016/11/15 17:59:57 by curquiza          #+#    #+#             */
+/*   Updated: 2016/11/18 16:03:15 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (alst)
+	int		i;
+	int		tab[11];
+
+	i = 0;
+	if (n == 0)
+		ft_putchar_fd('0', fd);
+	else if (n < 0)
+		ft_putchar_fd('-', fd);
+	while (n != 0)
 	{
-		if (*alst)
-			(*del)((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		tab[i] = n % 10;
+		n = n / 10;
+		i++;
+	}
+	while (--i >= 0)
+	{
+		if (tab[i] >= 0)
+			ft_putchar_fd(tab[i] + '0', fd);
+		else
+			ft_putchar_fd(-1 * tab[i] + '0', fd);
 	}
 }

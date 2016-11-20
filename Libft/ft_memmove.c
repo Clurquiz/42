@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/17 20:24:04 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/18 16:59:51 by curquiza         ###   ########.fr       */
+/*   Created: 2016/11/09 16:31:19 by curquiza          #+#    #+#             */
+/*   Updated: 2016/11/19 16:07:20 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (alst)
+	unsigned char	*dst2;
+	unsigned char	*src2;
+
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	if (src < dst)
 	{
-		if (*alst)
-			(*del)((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		src2 = src2 + len - 1;
+		dst2 = dst2 + len - 1;
+		while (len--)
+			*dst2-- = *src2--;
 	}
+	else if (src >= dst)
+	{
+		while (len--)
+			*dst2++ = *src2++;
+	}
+	return (dst);
 }
