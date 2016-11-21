@@ -6,7 +6,7 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/11/20 14:47:14 by curquiza         ###   ########.fr        #
+#    Updated: 2016/11/21 16:04:08 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ SRC_BONUS = ft_lstnew.c \
 			ft_intlen.c \
 			ft_lstlen.c \
 			ft_lstadd_back.c \
-			ft_lstlast.c
+			ft_lstlast.c \
+			ft_lstat.c
 OBJ = $(SRC_I:.c=.o) $(SRC_II:.c=.o) $(SRC_BONUS:.c=.o)
 
 

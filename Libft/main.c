@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 12:14:47 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/20 23:16:31 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/21 16:40:10 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -586,10 +586,10 @@ printf("************************************************************************
 	printf("ft_strlcat(a2, \"TEST\", 12) ==> return = %zu, dst = %s\n\n", ft_strlcat(a2, "TEST", 12), a2);
 	ft_init_str(&a1, &a2, &b1, &b2, &vide1, &vide2);
 	
-	printf("strlcat(a1, \"HelloLesCocos Comment ca va ?\", 20) ==> return = %zu, dst = %s\n", strlcat(a1, "HelloLesCocos Comment ca va ?", 20), a1);
-	ft_init_str(&a1, &a2, &b1, &b2, &vide1, &vide2);
-	printf("ft_strlcat(a2, \"HelloLesCocos Comment ca va ?\", 20) ==> return = %zu, dst = %s\n\n", ft_strlcat(a2, "HelloLesCocos Comment ca va ?", 20), a2);
-	ft_init_str(&a1, &a2, &b1, &b2, &vide1, &vide2);
+	//printf("strlcat(a1, \"HelloLesCocos Comment ca va ?\", 20) ==> return = %zu, dst = %s\n", strlcat(a1, "HelloLesCocos Comment ca va ?", 20), a1);
+	//ft_init_str(&a1, &a2, &b1, &b2, &vide1, &vide2);
+	//printf("ft_strlcat(a2, \"HelloLesCocos Comment ca va ?\", 20) ==> return = %zu, dst = %s\n\n", ft_strlcat(a2, "HelloLesCocos Comment ca va ?", 20), a2);
+	//ft_init_str(&a1, &a2, &b1, &b2, &vide1, &vide2);
 
 	printf("strlcat(a1, \"TEST\", 0) ==> return = %zu, dst = %s\n", strlcat(a1, "TEST", 0), a1);
 	ft_init_str(&a1, &a2, &b1, &b2, &vide1, &vide2);
@@ -1370,9 +1370,170 @@ printf(COLOR_BIG_TITLE "\n\n\n**************************************************
 printf("***************************** FCTs FACULTATIVES *****************************\n");
 printf("*****************************************************************************\n" COLOR_RESET);
 
-// === COUNTWORDS ==================================================================
+// === COUNTWORDS ==============================================================
 
 	printf(COLOR_TITLE "\n\n---------- COUNTWORDS ----------\n\n" COLOR_RESET);
+	printf("Rslt attendu ~ ft_countwords :\n");
+	printf("(\"hello\", ' ' => 1 ~ %d\n", ft_countwords("hello", ' '));
+	printf("\"   Hello les   cocos  \", ' ' => 3 ~ %d\n", ft_countwords("   Hello les   cocos  ", ' '));
+	printf("\"hello test hello youpppi\", ' ' => 4 ~ %d\n", ft_countwords("hello test hello youpppi", ' '));
+	printf("\"hello test hello youpppi\", 'e' => 4 ~ %d\n", ft_countwords("hello test hello youpppi", 'e'));
+	printf("\"hello test hello youpppi\", 'y' => 2 ~ %d\n", ft_countwords("hello test hello youpppi", 'y'));
+	printf("\"hello test hello youpppi\", '!' => 1 ~ %d\n", ft_countwords("hello test hello youpppi", '!'));
+	printf("\"\", ' ' => 0 ~ %d\n", ft_countwords("", ' '));
+	printf("NULL, ' ' => 0 ~ %d\n", ft_countwords(NULL, ' '));
 
+	
+// === INTLEN ==================================================================
+
+	printf(COLOR_TITLE "\n\n---------- INTLEN ----------\n\n" COLOR_RESET);
+	printf("Rslt attendu ~ ft_intlen :\n");
+	printf("0 => 1 ~ %d\n", ft_intlen(0));
+	printf("-0 => 1 ~ %d\n", ft_intlen(-0));
+	printf("3 => 1 ~ %d\n", ft_intlen(3));
+	printf("-3 => 2 ~ %d\n", ft_intlen(-3));
+	printf("42 => 2 ~ %d\n", ft_intlen(42));
+	printf("-42 => 3 ~ %d\n", ft_intlen(-42));
+	printf("123 => 3 ~ %d\n", ft_intlen(123));
+	printf("-123 => 4 ~ %d\n", ft_intlen(-123));
+	printf("84700 => 5 ~ %d\n", ft_intlen(84700));
+	printf("-84700 => 6 ~ %d\n", ft_intlen(-84700));
+	printf("10084700 => 8 ~ %d\n", ft_intlen(10084700));
+	printf("-10084700 => 9 ~ %d\n", ft_intlen(-10084700));
+	printf("2147483647 => 10 ~ %d\n", ft_intlen(2147483647));
+	printf("-2147483647 => 11 ~ %d\n", ft_intlen(-2147483648));
+
+
+// === LSTLEN ==================================================================
+
+	printf(COLOR_TITLE "\n\n---------- LSTLEN ----------\n\n" COLOR_RESET);
+
+	t_list		*list4;
+	t_list		*list5;
+
+	printf("list3 :\n");
+	ft_aff_list(list3);
+	printf("longueur = %d\n\n", ft_lstlen(list3));
+
+	list4 = NULL;
+	printf("list4 = NULL :\n");
+	ft_aff_list(list4);
+	printf("longueur = %d\n\n", ft_lstlen(list4));
+
+	list5 = ft_lstnew("Yeah", sizeof("Yeah"));
+	printf("list5 :\n");
+	ft_aff_list(list5);
+	printf("longueur = %d\n\n", ft_lstlen(list5));
+
+// === LSTADD_BACK =============================================================
+
+	printf(COLOR_TITLE "\n\n---------- LSTADD_BACK ----------\n\n" COLOR_RESET);
+	
+	printf("Ajout sur list4 = NULL :\n");
+	ft_lstadd_back(&list4, ft_lstnew("Poulette", sizeof("Poulette")));
+	ft_aff_list(list4);
+	printf("\n");
+
+	printf("Ajout sur list3\n");
+	printf("AVANT :\n");
+	ft_aff_list(list3);
+	printf("APRES :\n");
+	ft_lstadd_back(&list3, ft_lstnew("Poulet", sizeof("Poulet")));
+	ft_aff_list(list3);
+	
+// === LSTLAST =================================================================
+
+	printf(COLOR_TITLE "\n\n---------- LSTALAST ----------\n\n" COLOR_RESET);
+
+	t_list	*last;
+
+	last = NULL;
+	printf("Retour du dernier élément de list3\n");
+	printf("list3 =\n");
+	ft_aff_list(list3);
+	last = ft_lstlast(list3);
+	printf("Dernier élément :\n");
+	printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+
+	printf("Retour du dernier élément de list4\n");
+	printf("list4 =\n");
+	ft_aff_list(list4);
+	last = ft_lstlast(list4);
+	printf("Dernier élément :\n");
+	printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+
+	printf("Retour du dernier élément d'une liste NULL\n");
+	last = ft_lstlast(NULL);
+	printf("Dernier élément :\n");
+	if (last)
+		printf("content = %s, content_size = %zu\n", last->content, last->content_size);
+	
+// === LSTAT ===================================================================
+
+	printf(COLOR_TITLE "\n\n---------- LSTAT ----------\n\n" COLOR_RESET);
+
+	t_list	*list6;
+
+	list6 = NULL;
+	printf("Retour du 0ème élément de list6 = NULL :\n");
+	last = ft_lstat(list6, 0);
+	printf("Resultat:\n");
+	if (last)
+		printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+	printf("\n");
+	
+	printf("Retour du 5ème élément de list6 = NULL :\n");
+	last = ft_lstat(list6, 5);
+	printf("Resultat:\n");
+	if (last)
+		printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+	printf("\n");
+
+	ft_lstadd_back(&list6, ft_lstnew("Truc.fin", sizeof("Truc.fin")));
+	printf("Retour du premier élément (=0ème) de list6\n");
+	printf("list6 = \n");
+	ft_aff_list(list6);
+	printf("le 0ème élément :\n");
+	last = ft_lstat(list6, 0);
+	printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+
+	printf("Retour d'un élément out de list6\n");
+	printf("list6 = \n");
+	ft_aff_list(list6);
+	printf("le 1er élément :\n");
+	last = ft_lstat(list6, 1);
+	printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+
+	ft_lstadd(&list6, ft_lstnew("Truc.2", sizeof("Truc.2")));
+	ft_lstadd(&list6, ft_lstnew("Truc.1", sizeof("Truc.1")));
+	ft_lstadd(&list6, ft_lstnew("Truc.0", sizeof("Truc.0")));
+	printf("Retour du dernier élément (=3ème) de list6\n");
+	printf("list6 = \n");
+	ft_aff_list(list6);
+	printf("le 3ème élément :\n");
+	last = ft_lstat(list6, 3);
+	printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+
+
+	printf("Retour du premier élément (=0ème) de list6\n");
+	printf("list6 = \n");
+	ft_aff_list(list6);
+	printf("le 0ème élément :\n");
+	last = ft_lstat(list6, 0);
+	printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+
+	printf("Retour du deuxieme élément (=1er) de list6\n");
+	printf("list6 = \n");
+	ft_aff_list(list6);
+	printf("le 1er élément :\n");
+	last = ft_lstat(list6, 1);
+	printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
+
+	printf("Retour d'un élément out de list6\n");
+	printf("list6 = \n");
+	ft_aff_list(list6);
+	printf("le 6ème élément :\n");
+	last = ft_lstat(list6, 6);
+	printf("content = %s, content_size = %zu\n\n", last->content, last->content_size);
 	return (0);
 }

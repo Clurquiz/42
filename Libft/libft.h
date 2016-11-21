@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 12:15:31 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/20 14:57:18 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/21 16:33:38 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ int					ft_intlen(int n);
 int					ft_lstlen(t_list *lst);
 void				ft_lstadd_back(t_list **alst, t_list *new);
 t_list				*ft_lstlast(t_list *lst);
+t_list				*ft_lstat(t_list *lst, size_t n);
 
 #endif

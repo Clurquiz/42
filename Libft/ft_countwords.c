@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 12:04:47 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/18 12:06:44 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/21 13:04:29 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_countwords(char const *s, char c)
 	int		cpt;
 
 	cpt = 0;
+	if (!s)
+		return (cpt);
 	while (*s)
 	{
 		if (*s != c)
