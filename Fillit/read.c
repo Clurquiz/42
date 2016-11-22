@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:29:23 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/22 15:10:18 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/22 16:29:32 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	ft_putendl(char *str);
 void	ft_putstr(char *str);
 size_t	ft_strlen(char *str);
+char	**ft_strsplit(char const *s, char c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 char	*ft_read_and_fill(int fd)
 {
@@ -72,9 +74,9 @@ int		ft_count_bigblocks(char *file)
 		cpt++;
 	while (i < len - 2)
 	{
-		if (*file == '\n' && *(file + 1) == '\n' && *(file + 2) == '\n')
+		if (ft_strncmp(file, "\n\n\n", 3) == 0)
 			return (-1);
-		else if (*file == '\n' && *(file + 1) == '\n')
+		else if (ft_strncmp(file, "\n\n", 2))
 			cpt++;
 		file++;
 		i++;
@@ -84,24 +86,60 @@ int		ft_count_bigblocks(char *file)
 	return (cpt);
 }
 
+//check si toutes les lignes de chaque grand block ont bien un longueur de 4
+//retourne 1 si ok, 0 sinon
+int		ft_check_rowlen(char **tab)
+{
+	while (*tab)
+	{
+		if (ft_strlen(*tab) != 4)
+			return (0);
+		tab++;
+	}
+	return (1);
+}
+
+// Affcihe tab_file
+void	ft_print_tabfile(char **tab)
+{
+	while (*tab)
+	{
+		ft_putendl(*tab);
+		tab++;
+	}
+}
+
 int		main(int ac, char **av)
 {
 	int		fd;
 	char	*file;
+	char	**tab_file;
 
 	if (ac != 2)
 		return (0);
 	if ((fd = open(av[1], O_RDONLY)) == -1)
 		return (0);
+	tab_file = NULL;
 	file = ft_read_and_fill(fd);
 
 
 	//ft_putstr(file);
-	if(ft_check_typeofchar(file) == 0)
+	if (ft_check_typeofchar(file) == 0)
 	{
 		printf("pas bon type de char\n");
 		return (0);
 	}
-	printf("%d\n", ft_count_bigblocks(file));
+	if (ft_count_bigblocks(file) == -1)
+	{
+		printf("erreur separations sur les grands blocks\n");
+		return (0);
+	}
+	tab_file = ft_strsplit(file, '\n');
+	ft_print_tabfile(tab_file);
+	if (ft_check_rowlen(tab_file) == 0)
+	{
+		printf("erreur taille des grands blocks \n");
+		return (0);
+	}
 	return (0);
 }
