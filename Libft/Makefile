@@ -6,7 +6,7 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/11/21 16:04:08 by curquiza         ###   ########.fr        #
+#    Updated: 2016/11/22 15:52:24 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,10 +83,10 @@ OBJ = $(SRC_I:.c=.o) $(SRC_II:.c=.o) $(SRC_BONUS:.c=.o)
 all : $(NAME)
 
 $(NAME) : 
-	gcc $(FLAG) $(SRC_I) $(SRC_II) $(SRC_BONUS) main.c -o prog
-	#gcc $(FLAG) -c $(SRC_I) $(SRC_II) $(SRC_BONUS)
-	#ar rc $(NAME) $(OBJ)
-	#ranlib $(NAME)
+	#gcc $(FLAG) $(SRC_I) $(SRC_II) $(SRC_BONUS) main.c -o prog
+	gcc $(FLAG) -c $(SRC_I) $(SRC_II) $(SRC_BONUS)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 clean :
 	rm -rf $(OBJ)
