@@ -27,6 +27,6 @@ clean :
 	rm -rf $(OBJ)
 
 fclean : clean
-	rm -rf $(NAME) prog
+	rm -rf $(NAME)
 
 re : fclean $(NAME)

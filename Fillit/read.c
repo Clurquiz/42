@@ -57,7 +57,7 @@ int		ft_check_typeofchar(char *file)
 }
 
 
-// retourne le nb de grand block dans le fichier (strctmt > 1) ou -1 si ya une erreur
+// 2nd test : retourne le nb de grand block dans le fichier (strctmt > 1) ou 0 si ya une erreur
 // erreur = mauvaise separation ou saut de ligne debut ou fin de fichier
 int		ft_count_bigblocks(char *file)
 {
@@ -69,24 +69,26 @@ int		ft_count_bigblocks(char *file)
 	cpt = 0;
 	i = 0;
 	if (*file == '\n')
-		return (-1);
+		return (0);
 	else
 		cpt++;
 	while (i < len - 2)
 	{
 		if (ft_strncmp(file, "\n\n\n", 3) == 0)
-			return (-1);
+			return (0);
 		else if (ft_strncmp(file, "\n\n", 2) == 0)
 			cpt++;
 		file++;
 		i++;
 	}
 	if (*file == '\n' || *(file + 1) != '\n')
-		return (-1);
+		return (0);
 	printf("nbre de grands blocks : %d\n", cpt);
 	return (cpt);
 }
 
+// 3eme test : check que chaque grand bloque a bien une hauteur de 4
+// renvoie 1 si ok, 0 sinon
 int		ft_check_hight(char *file)
 {
 	int		i;
@@ -98,14 +100,12 @@ int		ft_check_hight(char *file)
 	len = ft_strlen(file);
 	while (i < len - 1)
 	{
-		printf("A");
 		if (*file == '\n')
 			cpt++;
 		if ((ft_strncmp(file, "\n\n", 2) == 0) && cpt != 4)
 			return (0);
 		else if ((ft_strncmp(file, "\n\n", 2) == 0) && cpt == 4)
 		{
-			printf("B");
 			cpt = 0;
 			file++;
 			i++;
@@ -120,8 +120,8 @@ int		ft_check_hight(char *file)
 	return (1);
 }
 
-//check si toutes les lignes de chaque grand block ont bien une largeur de 4
-//retourne 1 si ok, 0 sinon
+// 4ème test : Vient après le split. Check si toutes les lignes de chaque grand block ont bien une largeur de 4.
+// retourne 1 si ok, 0 sinon
 int		ft_check_rowlen(char **tab)
 {
 	while (*tab)
@@ -133,7 +133,7 @@ int		ft_check_rowlen(char **tab)
 	return (1);
 }
 
-// Affcihe tab_file
+// Affiche tab_file
 void	ft_print_tabfile(char **tab)
 {
 	while (*tab)
@@ -155,22 +155,25 @@ int		main(int ac, char **av)
 		return (0);
 	tab_file = NULL;
 	file = ft_read_and_fill(fd);
-
-
 	//ft_putstr(file);
+
 	if (ft_check_typeofchar(file) == 0)
 	{
-		printf("pas bon type de char\n");
+		printf("erreur type de char\n");
 		return (0);
 	}
-	if (ft_count_bigblocks(file) == -1)
+	if (ft_count_bigblocks(file) == 0)
 	{
 		printf("erreur separations sur les grands blocks\n");
 		return (0);
 	}
-	printf("%d\n", ft_check_hight(file));
+	if (ft_ft_check_hight(file) == 0)
+	{
+		printf("erreur hauteur des grands blocks\n");
+		return (0);
+	}
 	tab_file = ft_strsplit(file, '\n');
-	//ft_print_tabfile(tab_file);
+	ft_print_tabfile(tab_file);
 	if (ft_check_rowlen(tab_file) == 0)
 	{
 		printf("erreur largeur des grands blocks \n");
