@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:29:23 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/22 16:29:32 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/23 11:27:06 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,40 @@ int		ft_check_hight(char *file)
 	return (1);
 }
 
-// 4ème test : Vient après le split. Check si toutes les lignes de chaque grand block ont bien une largeur de 4.
+// 4ème test : check s'il y a bien 4 '#' dans chaque grands blocks.
+int		ft_check_nbblock(char *file)
+{
+	int		cpt_block;
+	int		i;
+	int		len;
+
+	cpt_block = 0;
+	i = 0;
+	len = ft_strlen(file);
+	while (i < len - 1)
+	{
+		if (*file == '#')
+			cpt_block++;
+		if (ft_strncmp(file, "\n\n", 2) == 0)
+		{
+			if (cpt_block != 4)
+				return (0);
+			cpt_block = 0;
+			i++;
+			file++;
+		}
+		i++;
+		file++;
+	}
+	if (*file == '#')
+		cpt_block++;
+	if (cpt_block != 4)
+		return (0);
+	return (1);
+}
+
+
+// 5ème test : Vient après le split. Check si toutes les lignes de chaque grand block ont bien une largeur de 4.
 // retourne 1 si ok, 0 sinon
 int		ft_check_rowlen(char **tab)
 {
@@ -167,9 +200,14 @@ int		main(int ac, char **av)
 		printf("erreur separations sur les grands blocks\n");
 		return (0);
 	}
-	if (ft_ft_check_hight(file) == 0)
+	if (ft_check_hight(file) == 0)
 	{
 		printf("erreur hauteur des grands blocks\n");
+		return (0);
+	}
+	if (ft_check_nbblock(file) == 0)
+	{
+		printf("erreur nb de blocks (#)\n");
 		return (0);
 	}
 	tab_file = ft_strsplit(file, '\n');
