@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:29:23 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/23 11:27:06 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/23 14:24:08 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int		ft_count_bigblocks(char *file)
 	}
 	if (*file == '\n' || *(file + 1) != '\n')
 		return (0);
-	printf("nbre de grands blocks : %d\n", cpt);
 	return (cpt);
 }
 
@@ -153,7 +152,7 @@ int		ft_check_nbblock(char *file)
 }
 
 
-// 5ème test : Vient après le split. Check si toutes les lignes de chaque grand block ont bien une largeur de 4.
+// 5ème test : Vient après le strsplit. Check si toutes les lignes de chaque grand block ont bien une largeur de 4.
 // retourne 1 si ok, 0 sinon
 int		ft_check_rowlen(char **tab)
 {
@@ -164,6 +163,13 @@ int		ft_check_rowlen(char **tab)
 		tab++;
 	}
 	return (1);
+}
+
+//6ème test : vient après tous les autres tests. Check si le blocks forment un tetriminos
+//retourne 1 si ok, 0 sinon
+int		ft_check_tetriminos(char **tab)
+{
+	return (0);
 }
 
 // Affiche tab_file
@@ -198,6 +204,13 @@ int		main(int ac, char **av)
 	if (ft_count_bigblocks(file) == 0)
 	{
 		printf("erreur separations sur les grands blocks\n");
+		return (0);
+	}
+	else
+		printf("nbre de grands blocks : %d\n", ft_count_bigblocks(file));
+	if (ft_count_bigblocks(file) > 26)
+	{
+		printf("erreur nb de grands blocks supérieur à 26\n");
 		return (0);
 	}
 	if (ft_check_hight(file) == 0)
