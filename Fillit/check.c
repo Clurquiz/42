@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:25:31 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 13:57:21 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 15:01:07 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int		ft_check_typeofchar(char *file)
 	return (1);
 }
 
-// 2nd test : retourne le nb de grand block dans le fichier (strctmt > 1) ou 0 si ya une erreur
-// erreur = mauvaise separation ou saut de ligne debut ou fin de fichier
+// 2nd test : retourne le nb de grands blocks dans le fichier (strctmt > 0) ou 0 si ya une erreur
+// erreur = mauvaise separation entre grands blockes ou ligne(s) vide(s) debut ou fin de fichier
 int		ft_count_bigblocks(char *file)
 {
 	int		cpt;
@@ -155,7 +155,6 @@ int		ft_checkaround(char **tab, int i, int j)
 	return (1);
 }
 
-
 // la fct principale du 6ème test
 int		ft_check_tetriminos(char **tab)
 {
@@ -175,5 +174,19 @@ int		ft_check_tetriminos(char **tab)
 		}
 		i++;
 	}
+	return (1);
+}
+
+// Toutes les verifs dans une seule fonction
+int		ft_check_input(char *file)
+{
+	char	**tab_file;
+
+	tab_file = NULL;
+	if (ft_check_typeofchar(file) == 0 || ft_count_bigblocks(file) == 0 || ft_count_bigblocks(file) > 26 || ft_check_hight(file) == 0 || ft_check_nbblocks(file) == 0)
+		return (0);
+	tab_file = ft_strsplit(file, '\n');
+	if (ft_check_rowlen(tab_file) == 0 || ft_check_tetriminos(tab_file) == 0)
+		return (0);
 	return (1);
 }

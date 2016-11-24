@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/24 12:55:57 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 15:01:12 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int					ft_check_hight(char *file);
 int					ft_check_nbblocks(char *file);
 int					ft_check_rowlen(char **tab);
 int					ft_check_tetriminos(char **tab);
+int					ft_check_input(char *file);
 
 #endif
