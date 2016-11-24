@@ -6,13 +6,15 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/11/22 11:42:11 by curquiza         ###   ########.fr        #
+#    Updated: 2016/11/24 11:43:56 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 FLAG = -Wall -Wextra -Werror
-SRC = read.c 
+SRC = main.c \
+	read.c \
+	check.c 
 OBJ = $(SRC:.c=.o)
 LIB = libft.a
 
