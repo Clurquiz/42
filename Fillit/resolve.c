@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 16:49:16 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 19:54:58 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 20:08:04 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_lst_pushback(t_list **alst, t_list *new)
 	}
 }
 
+// Creer un maillon
 t_list		*ft_create_elem(char *tetri1d)
 {
 	t_list	*new;
@@ -45,6 +46,7 @@ t_list		*ft_create_elem(char *tetri1d)
 	return (new);
 }
 
+// Remplit la liste chainee = ajoute des maillons en fonction du nombre de grands blocks
 void		ft_fill_lst(t_list **alst, char *file)
 {
 	while (*file)
@@ -56,23 +58,19 @@ void		ft_fill_lst(t_list **alst, char *file)
 	}
 }
 
-void	ft_print_split(char **tab)
-{
-	while (*tab)
-	{
-		printf("%s\n", *tab);
-		tab++;
-	}
-}
-
+// POUR TEST : affiche les composants de chaque maillon
 void	ft_print_list(t_list *lst)
 {
-	while(lst)
+	while (lst)
 	{
 		printf("used : %d\n", lst->used);
 		printf("tetri1d :\n%s", lst->tetri1d);
 		printf("tetri2d :\n");
-		ft_print_split(lst->tetri2d);
+		while (*(lst->tetri2d))
+		{
+			printf("%s\n", *(lst->tetri2d));
+			(lst->tetri2d)++;
+		}		
 		printf("\n");
 		lst = lst->next;
 	}
@@ -89,7 +87,6 @@ int		ft_resolve(char *av)
 	ft_print_list(lst);
 	return (1);
 }
-
 
 // VERSION FOIREUSE CLEM
 /*t_list		*ft_create_lst(char *file)
