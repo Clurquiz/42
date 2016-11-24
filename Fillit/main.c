@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 15:01:05 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 15:14:02 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 
 int		main(int ac, char **av)
 {
-	int		fd;
-	char	*file;
-
-	if (ac != 2)
-		return (0);
-	if ((fd = open(av[1], O_RDONLY)) == -1)
-		return (0);
-	file = ft_read_and_fill(fd);
-	if (ft_check_input(file) == 0)
+	if (ft_check_input(ac, av) == 0)
 		printf("INPUT ERROR\n");
 	else
 		printf("OK INPUT\n");
@@ -45,18 +37,6 @@ void	ft_print_tabfile(char **tab)
 
 int		main(int ac, char **av)
 {
-	int		fd;
-	char	*file;
-	char	**tab_file;
-
-	if (ac != 2)
-		return (0);
-	if ((fd = open(av[1], O_RDONLY)) == -1)
-		return (0);
-	tab_file = NULL;
-	file = ft_read_and_fill(fd);
-	//ft_putstr(file);
-
 	if (ft_check_typeofchar(file) == 0)
 	{
 		printf("erreur type de char\n");

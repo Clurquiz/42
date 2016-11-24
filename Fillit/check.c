@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:25:31 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 15:01:07 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 15:10:56 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,11 +178,18 @@ int		ft_check_tetriminos(char **tab)
 }
 
 // Toutes les verifs dans une seule fonction
-int		ft_check_input(char *file)
+int		ft_check_input(int ac, char **av)
 {
 	char	**tab_file;
+	char	*file;
 
 	tab_file = NULL;
+	if (ac != 2)
+	{
+		printf("mettre usage\n");
+		return (0);
+	}
+	file = ft_read_and_fill(av[1]);
 	if (ft_check_typeofchar(file) == 0 || ft_count_bigblocks(file) == 0 || ft_count_bigblocks(file) > 26 || ft_check_hight(file) == 0 || ft_check_nbblocks(file) == 0)
 		return (0);
 	tab_file = ft_strsplit(file, '\n');
