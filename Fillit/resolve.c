@@ -6,14 +6,14 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 16:49:16 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 20:08:04 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 20:12:53 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 // Pas possible de prendre celui de la libft car pas la meme structure
-void	ft_lst_pushback(t_list **alst, t_list *new)
+void		ft_lst_pushback(t_list **alst, t_list *new)
 {
 	t_list	*tmp;
 
@@ -54,12 +54,12 @@ void		ft_fill_lst(t_list **alst, char *file)
 		ft_lst_pushback(alst, ft_create_elem(ft_strsub(file, 0, 20)));
 		file = file + 20;
 		if (*file)
-			file++;	
+			file++;
 	}
 }
 
 // POUR TEST : affiche les composants de chaque maillon
-void	ft_print_list(t_list *lst)
+void		ft_print_list(t_list *lst)
 {
 	while (lst)
 	{
@@ -70,13 +70,13 @@ void	ft_print_list(t_list *lst)
 		{
 			printf("%s\n", *(lst->tetri2d));
 			(lst->tetri2d)++;
-		}		
+		}
 		printf("\n");
 		lst = lst->next;
 	}
 }
 
-int		ft_resolve(char *av)
+int			ft_resolve(char *av)
 {
 	t_list	*lst;
 	char	*file;
@@ -108,11 +108,10 @@ int		ft_resolve(char *av)
 		lst = lst->next;
 		file = file + 20;
 		if (*file)
-			file++;	
+			file++;
 	}
 	return (start);
 }*/
-
 
 // VERSION FOIREUSE BASTIEN
 /*t_list	*ft_create_lst(char *file)

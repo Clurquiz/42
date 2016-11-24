@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:25:31 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 15:10:56 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 20:18:37 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,20 +68,18 @@ int		ft_check_hight(char *file)
 	len = ft_strlen(file);
 	while (i < len - 1)
 	{
-		if (*file == '\n')
+		if (file[i] == '\n')
 			cpt++;
-		if ((ft_strncmp(file, "\n\n", 2) == 0) && cpt != 4)
+		if ((ft_strncmp(file + i, "\n\n", 2) == 0) && cpt != 4)
 			return (0);
-		else if ((ft_strncmp(file, "\n\n", 2) == 0) && cpt == 4)
+		else if ((ft_strncmp(file + i, "\n\n", 2) == 0) && cpt == 4)
 		{
 			cpt = 0;
-			file++;
 			i++;
 		}
 		i++;
-		file++;
 	}
-	if (*file == '\n')
+	if (file[i] == '\n')
 		cpt++;
 	if (cpt != 4)
 		return (0);
@@ -100,20 +98,18 @@ int		ft_check_nbblocks(char *file)
 	len = ft_strlen(file);
 	while (i < len - 1)
 	{
-		if (*file == '#')
+		if (file[i] == '#')
 			cpt_block++;
-		if (ft_strncmp(file, "\n\n", 2) == 0)
+		if (ft_strncmp(file + i, "\n\n", 2) == 0)
 		{
 			if (cpt_block != 4)
 				return (0);
 			cpt_block = 0;
 			i++;
-			file++;
 		}
 		i++;
-		file++;
 	}
-	if (*file == '#')
+	if (file[i] == '#')
 		cpt_block++;
 	if (cpt_block != 4)
 		return (0);
@@ -190,7 +186,9 @@ int		ft_check_input(int ac, char **av)
 		return (0);
 	}
 	file = ft_read_and_fill(av[1]);
-	if (ft_check_typeofchar(file) == 0 || ft_count_bigblocks(file) == 0 || ft_count_bigblocks(file) > 26 || ft_check_hight(file) == 0 || ft_check_nbblocks(file) == 0)
+	if (ft_check_typeofchar(file) == 0 || ft_count_bigblocks(file) == 0
+			|| ft_count_bigblocks(file) > 26 || ft_check_hight(file) == 0
+			|| ft_check_nbblocks(file) == 0)
 		return (0);
 	tab_file = ft_strsplit(file, '\n');
 	if (ft_check_rowlen(tab_file) == 0 || ft_check_tetriminos(tab_file) == 0)

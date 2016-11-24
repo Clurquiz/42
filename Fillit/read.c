@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:29:23 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 15:12:31 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 20:08:56 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*ft_read_and_fill(char *av)
 	int		ret;
 	char	buf[SIZE + 1];
 	char	*rslt;
-
 
 	if ((fd = open(av, O_RDONLY)) == -1)
 		return (NULL);
