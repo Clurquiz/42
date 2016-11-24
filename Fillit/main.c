@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 16:52:52 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 19:33:30 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,7 @@ int		main(int ac, char **av)
 		printf("INPUT ERROR\n");
 		return (0);
 	}
-	
-	if (ft_resolve(av[1]) == 0)
-	{
-		printf("erreur ft_resolve\n");
-		return (0);
-	}
-	else
-		printf("ok ft_resolve\n");
+	ft_resolve(av[1]);
 	return (0);
 }
 	

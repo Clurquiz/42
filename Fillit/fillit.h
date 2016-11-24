@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/24 19:30:32 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 19:49:21 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ char				*ft_strncpy(char *dest, const char *src, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strdup(char *s);
 
-void				ft_lstadd_back(t_list **alst, t_list *new);
 
 // FCT READ
 char				*ft_read_and_fill(char *av);
@@ -61,6 +60,7 @@ int					ft_check_input(int ac, char **av);
 
 // FCT FICHIER RESOLVE.C
 //t_list				*ft_create_lst(char *file);
+void				ft_lst_pushback(t_list **alst, t_list *new);
 t_list				*ft_create_elem(char *tetri1d);
 void				ft_fill_lst(t_list **alst, char *file);
 int					ft_resolve(char *av);
