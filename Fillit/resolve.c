@@ -6,13 +6,13 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 16:49:16 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 19:47:51 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 19:54:58 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-// Pas possible de prendre celui de la libff car pas la meme structure
+// Pas possible de prendre celui de la libft car pas la meme structure
 void	ft_lst_pushback(t_list **alst, t_list *new)
 {
 	t_list	*tmp;
