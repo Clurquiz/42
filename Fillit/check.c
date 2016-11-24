@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:25:31 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 13:39:29 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/24 13:57:21 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,26 @@ int		ft_check_rowlen(char **tab)
 //retourne 1 si ok, 0 sinon
 
 // sous fonction : check si le block touche au moins un autre block (retourne 1 si ok, sinon 0)
+int		ft_checkaround(char **tab, int i, int j)
+{
+	int		cpt;
+
+	cpt = 0;
+	if (tab[i][j + 1] == '#')
+		cpt++;
+	if (i % 4 != 0 && tab[i - 1][j] == '#')
+		cpt++;
+	if (i % 4 != 3 && tab[i + 1][j] == '#')
+		cpt++;
+	if (j != 0 && tab[i][j - 1] == '#')
+		cpt++;
+	if (cpt == 0)
+		return (0);
+	return (1);
+}
 
 
-
-// la fct principale
+// la fct principale du 6ème test
 int		ft_check_tetriminos(char **tab)
 {
 	int		i;
@@ -153,11 +169,7 @@ int		ft_check_tetriminos(char **tab)
 		j = 0;
 		while (tab[i][j])
 		{
-			if (tab[i][j] == '#')
-				cpt_block++;
-			else if (tab[i][j] == '#' && i % 4 == 3 && tab[i][j + 1] != '#')
-				return (0);
-			else if (tab[i][j] == '#' && tab[i][j + 1] != '#' && tab[i + 1][j] != '#')
+			if (tab[i][j] == '#' && ft_checkaround(tab, i, j) == 0)
 				return (0);
 			j++;
 		}
@@ -165,32 +177,3 @@ int		ft_check_tetriminos(char **tab)
 	}
 	return (1);
 }
-/*int		ft_check_tetriminos(char **tab)
-{
-	int		i;
-	int		j;
-	int		cpt_block;
-
-	i = 0;
-	j = 0;
-	cpt_block = 0;
-	while (tab[i])
-	{
-		j = 0;
-		while (tab[i][j])
-		{
-			if (tab[i][j] == '#')
-				cpt_block++;
-			if (cpt_block == 4)
-				cpt_block = 0;
-			else if (tab[i][j] == '#' && i % 4 == 3 && tab[i][j + 1] != '#')
-				return (0);
-			else if (tab[i][j] == '#' && tab[i][j + 1] != '#' && tab[i + 1][j] != '#')
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}*/
-
