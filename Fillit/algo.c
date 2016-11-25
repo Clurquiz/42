@@ -6,13 +6,27 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/25 15:28:45 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 15:55:46 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_check_case(char **endgrid, int i, int j)
+int	ft_check_and_place(char **endgrid, t_list lst)
+{
+	int	j;
+
+	j = 0;
+	while (endgrid[j])
+		j++;
+	if (j > 4)
+		return (1);
+	(void)lst;
+	return (0);
+}
+
+// CLEM
+/*int		ft_check_case(char **endgrid, int i, int j)
 {
 	if (endgrid[i][j] == '$' || endgrid[i][j] == '#' || endgrid[i][j] == '\0')
 		return (0);
@@ -46,7 +60,13 @@ int		ft_check_and_place(char **endgrid, t_list *lst)
 	i = 0;
 	j = 0;
 
-}
+}*/
+
+
+
+/*
+ * Efface les lettres ecrite dans la grid final quand cela n'est pas valide
+ */
 
 void	ft_erase(t_list *lst, char **endgrid)
 {
@@ -61,7 +81,7 @@ void	ft_erase(t_list *lst, char **endgrid)
 		i = 0;
 		while (endgrid[j][i])
 		{
-			if (endgrid[j][i] == c)
+			if (endgrid[j][i] == lst->letter)
 				endgrid[j][i] = '.';
 			i++;
 		}
@@ -74,7 +94,7 @@ int		ft_algo(t_list *lst, char **endgrid)
 	t_list *tmp;
 
 	tmp = lst;
-	while (tmp->used == 1)
+	while (tmp && tmp->used == 1)
 		tmp = tmp->next;
 	if (!(tmp))
 		return (1);
@@ -82,11 +102,11 @@ int		ft_algo(t_list *lst, char **endgrid)
 	{
 		while (tmp->used == 1 && tmp)
 			tmp = tmp->next;
-		if (ft_check_and_place(endgrid, c, *tmp))
+		if (ft_check_and_place(endgrid, *tmp))
 		{
 			tmp->used = 1;
-			if (ft_algo(c + 1, lst, endgrid))
-				ft_erase(tmp, endgrid, c);
+			if (!(ft_algo(lst, endgrid)))
+				ft_erase(tmp, endgrid);
 			else
 				return (1);
 		}
@@ -95,4 +115,3 @@ int		ft_algo(t_list *lst, char **endgrid)
 	}
 	return (0);
 }
-

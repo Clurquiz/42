@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 12:10:28 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/25 14:59:10 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 15:46:34 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		ft_print_list(t_list *lst)
 	}
 }
 
-int			ft_lstinit(char *av)
+t_list		*ft_lstinit(char *av)
 {
 	t_list	*lst;
 	char	*file;
@@ -90,8 +90,7 @@ int			ft_lstinit(char *av)
 	lst = NULL;
 	file = ft_read_and_fill(av);
 	ft_fill_lst(&lst, file);
-	ft_print_list(lst);
-	return (1);
+	return (lst);
 }
 
 // VERSION FOIREUSE CLEM
