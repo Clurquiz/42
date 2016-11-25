@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/24 19:33:30 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 11:31:24 by baparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 int		main(int ac, char **av)
 {
+	t_list *lst;
+
 	if (ft_check_input(ac, av) == 0)
 	{
 		printf("INPUT ERROR\n");
 		return (0);
 	}
-	ft_resolve(av[1]);
+	lst = ft_resolve(av[1]);
+	ft_algo('A', lst, grid);
 	return (0);
 }
 	
