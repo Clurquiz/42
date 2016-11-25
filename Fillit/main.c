@@ -6,31 +6,83 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/25 11:31:24 by baparis          ###   ########.fr       */
+/*   Updated: 2016/11/25 15:26:12 by baparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+int		ft_check_input(int ac, char **av)
+{
+	char	**tab_file;
+	char	*file;
+
+	tab_file = NULL;
+	if (ac != 2)
+	{
+		ft_putstr("Usage\n");
+		return (0);
+	}
+	file = ft_read_and_fill(av[1]);
+	if (ft_check_typeofchar(file) == 0 || ft_count_bigblocks(file) == 0
+			|| ft_count_bigblocks(file) > 26 || ft_check_hight(file) == 0
+			|| ft_check_nbblocks(file) == 0)
+		return (0);
+	tab_file = ft_strsplit(file, '\n');
+	if (ft_check_rowlen(tab_file) == 0 || ft_check_tetriminos(tab_file) == 0)
+		return (0);
+	return (1);
+}
+
+char	**ft_taballoc(int i)
+{
+	char	**tab;
+	int		j;
+	int		k;
+
+	k = 0;
+	j = 0;
+	if (!(tab = (char**)malloc(sizeof(char*) * i)))
+		return (NULL);
+	while (j < i - 1)
+	{
+		k = 1;
+		tab[j] = ft_strnew(i + 1);
+		tab[j][0] = '$';
+		while (k < i - 1)
+			tab[j][k++] = '.';
+		j++;
+	}
+	i = 0;
+	j--;
+	while (i < k)
+		tab[j][i++] = '$';
+	tab[++j] = 0;
+	return (tab);
+}
+
 int		main(int ac, char **av)
 {
-	t_list *lst;
+	t_list	*lst;
+	char	**grid;
+	int		i;
 
+	i = 4;
 	if (ft_check_input(ac, av) == 0)
 	{
-		printf("INPUT ERROR\n");
+		ft_putstr("INPUT ERROR\n");
 		return (0);
 	}
 	lst = ft_resolve(av[1]);
-	ft_algo('A', lst, grid);
+	if (!(grid = ft_taballoc(i++)))
+		return (0);
+	while (!(ft_algo(lst, grid)))
+		if ((grid = ft_taballoc(i++)) == NULL)
+			return (0);
+	ft_print_tabfile(grid);
 	return (0);
 }
-	
 
-/*
-//POUR VERIFIER QUELLE EST L'ERREUR D'INPUT
-
-// Affiche tab_file
 void	ft_print_tabfile(char **tab)
 {
 	while (*tab)
@@ -39,47 +91,3 @@ void	ft_print_tabfile(char **tab)
 		tab++;
 	}
 }
-
-int		main(int ac, char **av)
-{
-	if (ft_check_typeofchar(file) == 0)
-	{
-		printf("erreur type de char\n");
-		return (0);
-	}
-	if (ft_count_bigblocks(file) == 0)
-	{
-		printf("erreur separations sur les grands blocks\n");
-		return (0);
-	}
-	else
-		printf("nbre de grands blocks : %d\n", ft_count_bigblocks(file));
-	if (ft_count_bigblocks(file) > 26)
-	{
-		printf("erreur nb de grands blocks supérieur à 26\n");
-		return (0);
-	}
-	if (ft_check_hight(file) == 0)
-	{
-		printf("erreur hauteur des grands blocks\n");
-		return (0);
-	}
-	if (ft_check_nbblocks(file) == 0)
-	{
-		printf("erreur nb de blocks (#)\n");
-		return (0);
-	}
-	tab_file = ft_strsplit(file, '\n');
-	//ft_print_tabfile(tab_file);
-	if (ft_check_rowlen(tab_file) == 0)
-	{
-		printf("erreur largeur des grands blocks \n");
-		return (0);
-	}
-	if (ft_check_tetriminos(tab_file) == 0)
-	{
-		printf("erreur tetriminos invalide\n");
-		return (0);
-	}
-	return (0);
-}*/
