@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/25 12:14:09 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 12:24:45 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char				*ft_strdup(char *s);
 // FCT READ
 char				*ft_read_and_fill(char *av);
 
-// FCT DE VERIF
+// FCT DE CHECK.C
 int					ft_check_typeofchar(char *file);
 int					ft_count_bigblocks(char *file);
 int					ft_check_hight(char *file);
@@ -57,10 +57,15 @@ int					ft_check_rowlen(char **tab);
 int					ft_check_tetriminos(char **tab);
 int					ft_check_input(int ac, char **av);
 
-// FCT FICHIER LST_INIT.C
+// FCT DE LST_INIT.C
 void				ft_lst_pushback(t_list **alst, t_list *new);
 t_list				*ft_create_elem(char *tetri1d);
 void				ft_fill_lst(t_list **alst, char *file);
 int					ft_lstinit(char *av);
+
+// FCT DE LST_INIT.C
+int					ft_check_and_place(char **endgrid, char, t_list lst);
+void				ft_erase(t_list *lst, char **endgrid, char c);
+int					ft_algo(char c, t_list *lst, char **endgrid);
 
 #endif
