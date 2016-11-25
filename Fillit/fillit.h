@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/25 12:24:45 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 15:01:57 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 typedef struct	s_list
 {
 	int				used;
+	char			letter;
 	char			*tetri1d;
 	char			**tetri2d;
 	struct s_list	*next;
@@ -59,13 +60,13 @@ int					ft_check_input(int ac, char **av);
 
 // FCT DE LST_INIT.C
 void				ft_lst_pushback(t_list **alst, t_list *new);
-t_list				*ft_create_elem(char *tetri1d);
+t_list				*ft_create_elem(char *tetri1d, int num);
 void				ft_fill_lst(t_list **alst, char *file);
 int					ft_lstinit(char *av);
 
 // FCT DE LST_INIT.C
-int					ft_check_and_place(char **endgrid, char, t_list lst);
-void				ft_erase(t_list *lst, char **endgrid, char c);
-int					ft_algo(char c, t_list *lst, char **endgrid);
+int					ft_check_and_place(char **endgridr, t_list *lst);
+void				ft_erase(t_list *lst, char **endgrid);
+int					ft_algo(t_list *lst, char **endgrid);
 
 #endif

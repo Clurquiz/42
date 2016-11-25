@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 12:10:28 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/25 12:14:17 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 14:59:10 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_lst_pushback(t_list **alst, t_list *new)
 }
 
 // Creer un maillon
-t_list		*ft_create_elem(char *tetri1d)
+t_list		*ft_create_elem(char *tetri1d, int num)
 {
 	t_list	*new;
 
@@ -40,6 +40,7 @@ t_list		*ft_create_elem(char *tetri1d)
 	if (!(new = (t_list *)malloc(sizeof(*new))))
 		return (NULL);
 	new->used = 0;
+	new->letter = 'A' + num;
 	new->tetri1d = ft_strdup(tetri1d);
 	new->tetri2d = ft_strsplit(new->tetri1d, '\n');
 	new->next = NULL;
@@ -49,12 +50,16 @@ t_list		*ft_create_elem(char *tetri1d)
 // Remplit la liste chainee = ajoute des maillons en fonction du nombre de grands blocks
 void		ft_fill_lst(t_list **alst, char *file)
 {
+	int		cpt;
+
+	cpt = 0;
 	while (*file)
 	{
-		ft_lst_pushback(alst, ft_create_elem(ft_strsub(file, 0, 20)));
+		ft_lst_pushback(alst, ft_create_elem(ft_strsub(file, 0, 20), cpt));
 		file = file + 20;
 		if (*file)
 			file++;
+		cpt++;
 	}
 }
 
@@ -64,6 +69,7 @@ void		ft_print_list(t_list *lst)
 	while (lst)
 	{
 		printf("used : %d\n", lst->used);
+		printf("letter : %c\n", lst->letter);
 		printf("tetri1d :\n%s", lst->tetri1d);
 		printf("tetri2d :\n");
 		while (*(lst->tetri2d))
