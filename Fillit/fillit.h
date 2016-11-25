@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/25 15:50:47 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 18:10:54 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,16 @@ int					ft_check_typeofchar(char *file);
 int					ft_count_bigblocks(char *file);
 int					ft_check_hight(char *file);
 int					ft_check_nbblocks(char *file);
+
+// FCT DE CHECK2.C
 int					ft_check_rowlen(char **tab);
+int					ft_checkaround(char **tab, int i, int j);
 int					ft_check_tetriminos(char **tab);
-int					ft_check_input(int ac, char **av);
 
 // FCT DE LST_INIT.C
 void				ft_lst_pushback(t_list **alst, t_list *new);
 t_list				*ft_create_elem(char *tetri1d, int num);
-void				ft_fill_lst(t_list **alst, char *file);
-t_list				*ft_lstinit(char *av);
+t_list				*ft_fill_lst(char *av);
 
 // FCT DE ALGO.C
 int					ft_check_and_place(char **endgrid, t_list lst);
@@ -71,5 +72,8 @@ void				ft_erase(t_list *lst, char **endgrid);
 int					ft_algo(t_list *lst, char **endgrid);
 
 //FCT DE MAIN.C
+int					ft_check_input(int ac, char **av);
+char				**ft_taballoc(int i);
+void				ft_print_tabfile(char ** tab);
 
 #endif

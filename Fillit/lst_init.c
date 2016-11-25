@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 12:10:28 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/25 15:46:34 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 18:10:38 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,28 @@ t_list		*ft_create_elem(char *tetri1d, int num)
 }
 
 // Remplit la liste chainee = ajoute des maillons en fonction du nombre de grands blocks
-void		ft_fill_lst(t_list **alst, char *file)
+t_list		*ft_fill_lst(char *av)
 {
 	int		cpt;
+	t_list	*lst;
+	char	*file;
 
+	lst = NULL;
+	file = ft_read_and_fill(av);
 	cpt = 0;
 	while (*file)
 	{
-		ft_lst_pushback(alst, ft_create_elem(ft_strsub(file, 0, 20), cpt));
+		ft_lst_pushback(&lst, ft_create_elem(ft_strsub(file, 0, 20), cpt));
 		file = file + 20;
 		if (*file)
 			file++;
 		cpt++;
 	}
+	return (lst);
 }
 
 // POUR TEST : affiche les composants de chaque maillon
-void		ft_print_list(t_list *lst)
+/*void		ft_print_list(t_list *lst)
 {
 	while (lst)
 	{
@@ -80,72 +85,4 @@ void		ft_print_list(t_list *lst)
 		printf("\n");
 		lst = lst->next;
 	}
-}
-
-t_list		*ft_lstinit(char *av)
-{
-	t_list	*lst;
-	char	*file;
-
-	lst = NULL;
-	file = ft_read_and_fill(av);
-	ft_fill_lst(&lst, file);
-	return (lst);
-}
-
-// VERSION FOIREUSE CLEM
-/*t_list		*ft_create_lst(char *file)
-{
-	t_list	*lst;
-	t_list	*start;
-
-	if (!(lst = (t_list *)malloc(sizeof(t_list))))
-		return (NULL);
-	start = lst;
-	while (*file)
-	{
-		if (!(lst = (t_list *)malloc(sizeof(t_list))))
-			return (NULL);
-		lst->used = 0;
-		lst->tetri1d = ft_strsub(file, 0, 20);
-		lst->tetri2d = ft_strsplit(lst->tetri1d, '\n');
-		lst->next = NULL;
-		lst = lst->next;
-		file = file + 20;
-		if (*file)
-			file++;
-	}
-	return (start);
-}*/
-
-// VERSION FOIREUSE BASTIEN
-/*t_list	*ft_create_lst(char *file)
-{
-	t_list	*lst;
-	int	i;
-
-	i = 0;
-	lst = NULL;
-	if (file)
-	{
-		if (!(lst->tetri1d = (char*)malloc(sizeof(char) * 20)))
-			return(NULL);
-		if (!(lst->tetri2d = (char**)malloc(sizeof(char*) * 4)))
-			return (NULL);
-		while (i < 4)
-			if (!(lst->tetri2d[i++] = (char*)malloc(sizeof(char) * 5)))
-				return (NULL);
-		lst->used = 0;
-		ft_strncpy(lst->tetri1d, file, 19);
-		lst->tetri1d[20] = '\0';
-		i = 0;
-		while (i < 4)
-		{
-			ft_strncpy(lst->tetri2d[i], file + (5 * i), 4);
-			lst->tetri2d[i++][5] = '\0';
-		}
-		lst->next = ft_create_lst(file + 21);
-		return (lst);
-	}
-	return (NULL);
 }*/

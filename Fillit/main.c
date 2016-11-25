@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/25 16:13:41 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 18:08:49 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		main(int ac, char **av)
 		ft_putstr("INPUT ERROR\n");
 		return (0);
 	}
-	lst = ft_lstinit(av[1]);
+	lst = ft_fill_lst(av[1]);
 	if (!(grid = ft_taballoc(i++)))
 		return (0);
 	while (!(ft_algo(lst, grid)))
