@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/25 15:01:57 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 15:28:55 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ t_list				*ft_create_elem(char *tetri1d, int num);
 void				ft_fill_lst(t_list **alst, char *file);
 int					ft_lstinit(char *av);
 
-// FCT DE LST_INIT.C
+// FCT DE ALGO.C
+//
 int					ft_check_and_place(char **endgridr, t_list *lst);
 void				ft_erase(t_list *lst, char **endgrid);
 int					ft_algo(t_list *lst, char **endgrid);

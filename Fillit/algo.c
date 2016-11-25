@@ -6,19 +6,49 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/25 12:24:43 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/25 15:28:45 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	ft_check_and_place(char **endgrid, char c, t_list lst)
+int		ft_check_case(char **endgrid, int i, int j)
 {
-	printf("lol\n");
-	return (0);
+	if (endgrid[i][j] == '$' || endgrid[i][j] == '#' || endgrid[i][j] == '\0')
+		return (0);
+	return (1);
 }
 
-void	ft_erase(t_list *lst, char **endgrid, char c)
+int		ft_check_a_position(char **endgrid, t_list *lst, i, j)
+{
+	int		k;
+	int		l;
+
+	k = 0;
+	while ((lst->tetri2d)[k])
+	{
+		l = 0;
+		while ((lst->tetri2d)[k][l])
+		{
+			l++;
+		}
+		
+		k++;
+	}
+}
+
+
+int		ft_check_and_place(char **endgrid, t_list *lst)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+
+}
+
+void	ft_erase(t_list *lst, char **endgrid)
 {
 	int	i;
 	int	j;
@@ -39,7 +69,7 @@ void	ft_erase(t_list *lst, char **endgrid, char c)
 	}
 }
 
-int		ft_algo(char c, t_list *lst, char **endgrid)
+int		ft_algo(t_list *lst, char **endgrid)
 {
 	t_list *tmp;
 
