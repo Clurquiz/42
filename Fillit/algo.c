@@ -12,54 +12,48 @@
 
 #include "fillit.h"
 
-/*int	ft_check_and_place(char **endgrid, t_list lst)
+/*int	ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 {
-	int	j;
+	int	k;
 
-	j = 0;
-	while (endgrid[j])
-		j++;
-	if (j > 4)
+	k = 0;
+	while (endgrid[k])
+		k++;
+	if (k > 4)
 		return (1);
 	(void)lst;
+	(void)i;
+	(void)j;
 	return (0);
 }*/
 
 // CLEM
 int		ft_check_case(char **endgrid, int i, int j)
 {
-	if (endgrid[i][j] == '?' || (endgrid[i][j] >= 'A' && endgrid[i][j] <= 'Z')
-		|| endgrid[i][j] == '\0')
-		return (0);
-	return (1);
+	if (endgrid[i][j] == '.')
+		return (1);
+	return (0);
 }
 
 int		ft_check_a_position(char **endgrid, t_list lst, int i, int j)
 {
 	int		k;
 	int		tmp_k;
-	int		cpt_block;
 
-	cpt_block = 0;
 	k = 0;
 	if (ft_check_case(endgrid, i, j) == 0)
 		return (0);
+	endgrid[i][j] = lst.letter;
+	while (*(lst.tetri1d) != '#')
+		(lst.tetri1d)++;
+	tmp_k = k;
 	while (*(lst.tetri1d))
 	{
 		if (*(lst.tetri1d) == '#')
 		{
-			cpt_block++;
-			if (cpt_block == 1)
-			{
-				endgrid[i][j] = lst.letter;
-				tmp_k = k;
-			}	
-			else
-			{
-				if (ft_check_case(endgrid, i + (k / 4 - tmp_k / 4), j + (k % 4 - tmp_k % 4) == 0))
-					return (0);
-				endgrid[i + (k / 4 - tmp_k / 4)][j + (k % 4 - tmp_k % 4)] = lst.letter;
-			}
+			if (ft_check_case(endgrid, i + (k / 4 - tmp_k / 4), j + (k % 4 - tmp_k % 4) == 0))
+				return (0);
+			endgrid[i + (k / 4 - tmp_k / 4)][j + (k % 4 - tmp_k % 4)] = lst.letter;
 		}
 		if (*(lst.tetri1d) != '\n')
 			k++;
