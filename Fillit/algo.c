@@ -31,10 +31,16 @@
 int		ft_check_case(char **endgrid, int i, int j)
 {
 	if (endgrid[i][j] == '.')
+	{
+		//printf("OK i = %d j = %d\n", i, j);	
 		return (1);
+	}
+	//printf("NON i = %d j = %d\n", i, j);	
 	return (0);
 }
 
+// pas bon : faire un tableau qui rentre les coordonnes de chaque bloque et les
+// ecrire QUE si elles rentrent toutes, sinon ça va ecrire pour rien.
 int		ft_check_a_position(char **endgrid, t_list lst, int i, int j)
 {
 	int		k;
@@ -51,23 +57,28 @@ int		ft_check_a_position(char **endgrid, t_list lst, int i, int j)
 			k++;
 	}
 	tmp_k = k;
+	(lst.tetri1d)++;
+	if (*(lst.tetri1d) != '\n')
+		k++;
 	while (*(lst.tetri1d))
 	{
 		if (*(lst.tetri1d) == '#')
 		{
-			if (ft_check_case(endgrid, i + (k / 4 - tmp_k / 4), j + (k % 4 - tmp_k % 4) == 0))
+		//	printf("k = %d\n", k);
+			if (ft_check_case(endgrid, i + (k / 4 - tmp_k / 4), j + (k % 4 - tmp_k % 4)) == 0)
 				return (0);
 			endgrid[i + (k / 4 - tmp_k / 4)][j + (k % 4 - tmp_k % 4)] = lst.letter;
 		}
+		(lst.tetri1d)++;
 		if (*(lst.tetri1d) != '\n')
 			k++;
-		(lst.tetri1d)++;
 	}
 	return (1);
 }
 
 int		ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 {
+	printf("i = %d j = %d\n", i, j);	
 	if (endgrid[i + 2] == 0 && endgrid[i][j] == '\0')
 		return (0);
 	else
@@ -75,7 +86,7 @@ int		ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 		if (ft_check_a_position(endgrid, lst, i, j) == 1)
 			return (1);
 		j++;
-		if (endgrid[i][j] == '\0')
+		if (endgrid[i][j] == '\0' && endgrid[i + 2] != 0)
 		{
 			j = 1;
 			i++;
