@@ -45,7 +45,11 @@ int		ft_check_a_position(char **endgrid, t_list lst, int i, int j)
 		return (0);
 	endgrid[i][j] = lst.letter;
 	while (*(lst.tetri1d) != '#')
+	{
 		(lst.tetri1d)++;
+		if (*(lst.tetri1d) != '\n')
+			k++;
+	}
 	tmp_k = k;
 	while (*(lst.tetri1d))
 	{
@@ -68,6 +72,8 @@ int		ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 		return (0);
 	else
 	{
+		if (ft_check_a_position(endgrid, lst, i, j) == 1)
+			return (1);
 		j++;
 		if (endgrid[i][j] == '\0')
 		{
@@ -119,7 +125,7 @@ int		ft_algo(t_list *lst, char **endgrid)
 	{
 		while (tmp->used == 1 && tmp)
 			tmp = tmp->next;
-		if (ft_check_and_place(endgrid, *tmp, 0, 1))
+		if (ft_check_and_place(endgrid, *tmp, 0, 0))
 		{
 			tmp->used = 1;
 			if (!(ft_algo(lst, endgrid)))
