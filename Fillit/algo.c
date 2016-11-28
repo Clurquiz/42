@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/28 17:13:26 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 17:29:24 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int		ft_algo(t_list *lst, char **endgrid)
 			return (1); //clem
 		if (tmp->used != 1 && ft_check_and_place(endgrid, *tmp, 0, 0))
 		{
+			ft_print_tabfile(endgrid);
 			tmp->used = 1;
 			if (!(ft_algo(lst, endgrid)))
 				ft_erase(tmp, endgrid);
