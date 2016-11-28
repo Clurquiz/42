@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/28 19:27:16 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 19:36:22 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		ft_check_input(int ac, char **av)
 	tab_file = NULL;
 	if (ac != 2)
 	{
-		ft_putstr("usage: fillit file\n");
+		ft_putendl("usage: ./fillit file");
 		exit(0);
 	}
 	file = ft_read_and_fill(av[1]);
