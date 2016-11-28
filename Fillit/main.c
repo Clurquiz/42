@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/28 17:15:13 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 18:03:00 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ char	**ft_taballoc(int i)
 
 	k = 0;
 	j = 0;
-	//if (!(tab = (char**)malloc(sizeof(char*) * i)))
 	if (!(tab = (char**)malloc(sizeof(char*) * (i + 1))))
 		return (NULL);
-	//while (j < i - 1)
 	while (j < i)
 	{
 		k = 2;
@@ -82,7 +80,7 @@ int		main(int ac, char **av)
 	i = 4;
 	if (ft_check_input(ac, av) == 0)
 	{
-		ft_putstr("ERROR\n");
+		ft_putendl("error");
 		return (0);
 	}
 	lst = ft_fill_lst(av[1]);
