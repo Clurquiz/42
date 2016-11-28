@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/28 16:43:15 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 17:15:13 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	ft_print_tabfile(char **tab)
 
 int		main(int ac, char **av)
 {
-	//t_list	*lst;
-	//char	**grid;
+	t_list	*lst;
+	char	**grid;
 	int		i;
 
 	i = 4;

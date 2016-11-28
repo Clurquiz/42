@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:18:28 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/28 16:42:52 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 17:15:36 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,35 @@ int	ft_check_tetriminos(char **tab)
 	int	j;
 	int	cpt;
 
+	i = 0;
+	j = 0;
+	cpt = 0;
+	while (tab[i])
+	{
+		j = 0;
+		while (tab[i][j])
+		{
+			if (tab[i][j] == '#')
+			{
+				if (ft_checkaround(tab, i, j) == 0)
+					return (0);
+				cpt = cpt + ft_checkaround(tab, i, j);
+			}
+			j++;
+		}
+		i++;
+	}
+	if (cpt <= 4)
+		return (0);
+	return (1);
+}
+
+/*int	ft_check_tetriminos(char **tab)
+{
+	int	i;
+	int	j;
+	int	cpt;
+
 	cpt = 0;
 	i = 0;
 	while (tab[i])
@@ -66,7 +95,7 @@ int	ft_check_tetriminos(char **tab)
 		i++;
 	}
 	return (1);
-}
+}*/
 
 /*int	ft_check_tetriminos(char **tab)
 {
