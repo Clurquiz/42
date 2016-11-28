@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/28 12:57:18 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 13:48:28 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int		ft_algo(t_list *lst, char **endgrid)
 {
 	t_list *tmp;
 
+	printf("hello\n");
 	tmp = lst;
 	while (tmp && tmp->used == 1)
 		tmp = tmp->next;
@@ -107,9 +108,14 @@ int		ft_algo(t_list *lst, char **endgrid)
 		return (1);
 	while (tmp)
 	{
-		//while (tmp->used == 1 && tmp)
-		while (tmp->used == 1 && tmp->next)
+		//while (tmp->used == 1 && tmp) //bastien
+		while (tmp->used == 1 && tmp->next) //clem
+		{
+			printf("used = %s\n", tmp->tetri1d);
 			tmp = tmp->next;
+		}
+		if (!(tmp)) //clem
+			return (1); //clem
 		if (ft_check_and_place(endgrid, *tmp, 0, 0))
 		{
 			tmp->used = 1;
@@ -118,7 +124,6 @@ int		ft_algo(t_list *lst, char **endgrid)
 			else
 				return (1);
 		}
-		//if (tmp)
 		if (tmp)
 			tmp = tmp->next;
 	}

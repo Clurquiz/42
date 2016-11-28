@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 12:10:28 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/28 12:57:02 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 13:47:32 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,20 @@ void		ft_fill_tabblock(t_list *lst)
 {
 	int		i;
 	int		k;
+	char	*tmp;
 
+	tmp = lst->tetri1d;
 	i = 0;
 	k = 0;
-	while (*(lst->tetri1d))
+	while (*tmp)
 	{
-		if (*(lst->tetri1d) == '#')
+		if (*tmp == '#')
 		{
 			lst->tab_block[i] = k;
 			i++;
 		}
-		(lst->tetri1d)++;
-		if (*(lst->tetri1d) != '\n')
+		tmp++;
+		if (*tmp != '\n')
 			k++;
 	}
 }
