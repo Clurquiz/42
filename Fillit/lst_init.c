@@ -6,13 +6,13 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 12:10:28 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/25 18:10:38 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 12:11:43 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-// Pas possible de prendre celui de la libft car pas la meme structure
+// Pas possible de prendre les fct de liste chainee de la libft car pas la meme structure
 void		ft_lst_pushback(t_list **alst, t_list *new)
 {
 	t_list	*tmp;
@@ -30,7 +30,26 @@ void		ft_lst_pushback(t_list **alst, t_list *new)
 	}
 }
 
-// Creer un maillon
+// Remplit le tableau tab_block qui sont les coordonnees de chaque bloc
+
+void		ft_fill_tabblock(t_list lst)
+{
+	int		i;
+	int		k;
+
+	i = 0;
+	k = 0;
+	while (*(lst.tetri1d))
+	{
+		if (*(lst.tetri1d) == '#')
+			lst.tab_block[i] = k;
+		(lst.tetri1d)++;
+		if (*(lst.tetri1d) != '\n')
+			k++;
+	}
+}
+
+// Créée un maillon
 t_list		*ft_create_elem(char *tetri1d, int num)
 {
 	t_list	*new;
@@ -43,6 +62,7 @@ t_list		*ft_create_elem(char *tetri1d, int num)
 	new->letter = 'A' + num;
 	new->tetri1d = ft_strdup(tetri1d);
 	new->tetri2d = ft_strsplit(new->tetri1d, '\n');
+	ft_fill_tabblock(*new);
 	new->next = NULL;
 	return (new);
 }

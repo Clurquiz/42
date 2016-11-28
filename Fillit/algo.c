@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/25 19:21:00 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 12:11:44 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,58 +27,32 @@
 	return (0);
 }*/
 
-// CLEM
-int		ft_check_case(char **endgrid, int i, int j)
-{
-	if (endgrid[i][j] == '.')
-	{
-		//printf("OK i = %d j = %d\n", i, j);	
-		return (1);
-	}
-	//printf("NON i = %d j = %d\n", i, j);	
-	return (0);
-}
-
-// pas bon : faire un tableau qui rentre les coordonnes de chaque bloque et les
-// ecrire QUE si elles rentrent toutes, sinon ça va ecrire pour rien.
 int		ft_check_a_position(char **endgrid, t_list lst, int i, int j)
 {
 	int		k;
-	int		tmp_k;
 
-	k = 0;
-	if (ft_check_case(endgrid, i, j) == 0)
+	if (endgrid [i][j] != '.')
 		return (0);
-	endgrid[i][j] = lst.letter;
-	while (*(lst.tetri1d) != '#')
+	k = 1;
+	while (k < 4)
 	{
-		(lst.tetri1d)++;
-		if (*(lst.tetri1d) != '\n')
-			k++;
-	}
-	tmp_k = k;
-	(lst.tetri1d)++;
-	if (*(lst.tetri1d) != '\n')
+		if (endgrid[i + (lst.tab_block[k] / 4 - lst.tab_block[0] / 4)][j + (lst.tab_block[k] % 4 - lst.tab_block[0] % 4)] != '.')
+			return (0);
 		k++;
-	while (*(lst.tetri1d))
+	}
+	endgrid[i][j] = lst.letter;
+	k = 1;
+	while (k < 4)
 	{
-		if (*(lst.tetri1d) == '#')
-		{
-		//	printf("k = %d\n", k);
-			if (ft_check_case(endgrid, i + (k / 4 - tmp_k / 4), j + (k % 4 - tmp_k % 4)) == 0)
-				return (0);
-			endgrid[i + (k / 4 - tmp_k / 4)][j + (k % 4 - tmp_k % 4)] = lst.letter;
-		}
-		(lst.tetri1d)++;
-		if (*(lst.tetri1d) != '\n')
-			k++;
+		endgrid[i + (lst.tab_block[k] / 4 - lst.tab_block[0] / 4)][j + (lst.tab_block[k] % 4 - lst.tab_block[0] % 4)] = lst.letter;
+		k++;
 	}
 	return (1);
 }
 
 int		ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 {
-	printf("i = %d j = %d\n", i, j);	
+	//printf("i = %d j = %d\n", i, j);	
 	if (endgrid[i + 2] == 0 && endgrid[i][j] == '\0')
 		return (0);
 	else
