@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/28 18:03:00 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 19:27:16 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int		ft_check_input(int ac, char **av)
 	tab_file = NULL;
 	if (ac != 2)
 	{
-		ft_putstr("Usage\n");
-		return (0);
+		ft_putstr("usage: fillit file\n");
+		exit(0);
 	}
 	file = ft_read_and_fill(av[1]);
+	if (file == NULL)
+		return (0);
 	if (ft_check_typeofchar(file) == 0 || ft_count_bigblocks(file) == 0
 			|| ft_count_bigblocks(file) > 26 || ft_check_hight(file) == 0
 			|| ft_check_nbblocks(file) == 0)
@@ -92,5 +94,3 @@ int		main(int ac, char **av)
 	ft_print_tabfile(grid);
 	return (0);
 }
-
-
