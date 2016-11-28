@@ -6,13 +6,12 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 12:10:28 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/28 14:48:19 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/28 19:40:49 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-// Pas possible de prendre les fct de liste chainee de la libft car pas la meme structure
 void		ft_lst_pushback(t_list **alst, t_list *new)
 {
 	t_list	*tmp;
@@ -29,8 +28,6 @@ void		ft_lst_pushback(t_list **alst, t_list *new)
 		tmp->next = new;
 	}
 }
-
-// Remplit le tableau tab_block qui sont les coordonnees de chaque bloc
 
 void		ft_fill_tabblock(t_list *lst)
 {
@@ -54,7 +51,6 @@ void		ft_fill_tabblock(t_list *lst)
 	}
 }
 
-// Créée un maillon
 t_list		*ft_create_elem(char *tetri1d, int num)
 {
 	t_list	*new;
@@ -72,7 +68,6 @@ t_list		*ft_create_elem(char *tetri1d, int num)
 	return (new);
 }
 
-// Remplit la liste chainee = ajoute des maillons en fonction du nombre de grands blocks
 t_list		*ft_fill_lst(char *av)
 {
 	int		cpt;
@@ -92,22 +87,3 @@ t_list		*ft_fill_lst(char *av)
 	}
 	return (lst);
 }
-
-// POUR TEST : affiche les composants de chaque maillon
-/*void		ft_print_list(t_list *lst)
-{
-	while (lst)
-	{
-		printf("used : %d\n", lst->used);
-		printf("letter : %c\n", lst->letter);
-		printf("tetri1d :\n%s", lst->tetri1d);
-		printf("tetri2d :\n");
-		while (*(lst->tetri2d))
-		{
-			printf("%s\n", *(lst->tetri2d));
-			(lst->tetri2d)++;
-		}
-		printf("\n");
-		lst = lst->next;
-	}
-}*/
