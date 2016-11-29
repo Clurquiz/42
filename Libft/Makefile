@@ -6,11 +6,12 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/11/22 15:52:24 by curquiza         ###   ########.fr        #
+#    Updated: 2016/11/29 16:47:49 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+CC = gcc $(FLAG)
 FLAG = -Wall -Wextra -Werror
 SRC_I = ft_memset.c \
 		ft_bzero.c \
@@ -76,22 +77,25 @@ SRC_BONUS = ft_lstnew.c \
 			ft_lstadd_back.c \
 			ft_lstlast.c \
 			ft_lstat.c
-OBJ = $(SRC_I:.c=.o) $(SRC_II:.c=.o) $(SRC_BONUS:.c=.o)
-
-
+OBJ = $(SRC_I:%.c=%.o) $(SRC_II:%.c=%.o) $(SRC_BONUS:%.c=%.o)
 
 all : $(NAME)
 
-$(NAME) : 
-	#gcc $(FLAG) $(SRC_I) $(SRC_II) $(SRC_BONUS) main.c -o prog
-	gcc $(FLAG) -c $(SRC_I) $(SRC_II) $(SRC_BONUS)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME) : $(OBJ) 
+	@#$(CC) $(SRC_I) $(SRC_II) $(SRC_BONUS) main.c -o prog
+	@ar rc $@ $^
+	@ranlib $@
+	@echo "Make $@ : \033[1;32mOK\033[0m"
+
+%.o : %.c
+	@$(CC) -c $< -o $@
 
 clean :
-	rm -rf $(OBJ)
+	@rm -f $(OBJ)
+	@echo "Make $@ : \033[1;32mOK\033[0m"
 
 fclean : clean
-	rm -rf $(NAME) prog
+	@rm -f $(NAME) prog
+	@echo "Make $@ : \033[1;32mOK\033[0m"
 
 re : fclean $(NAME)
