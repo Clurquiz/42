@@ -6,11 +6,12 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/11/25 16:11:56 by curquiza         ###   ########.fr        #
+#    Updated: 2016/11/29 15:19:15 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
+CC = gcc $(FLAG)
 FLAG = -Wall -Wextra -Werror
 SRC = main.c \
 	read.c \
@@ -18,20 +19,22 @@ SRC = main.c \
 	check2.c \
 	lst_init.c \
 	algo.c
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:%.c=%.o)
 LIB = libft.a
-
-
 
 all : $(NAME)
 
-$(NAME) : 
-	gcc $(FLAG) $(SRC) $(LIB) -o $(NAME)
+$(NAME) : $(OBJ)
+	@$(CC) $^ $(LIB) -o $@
+	@echo "\033[1;32m$(NAME) created\033[0m"
+
+%.o: %.c
+	@$(CC) -o $@ -c $<
 
 clean :
-	rm -rf $(OBJ)
+	@rm -f $(OBJ)
 
 fclean : clean
-	rm -rf $(NAME)
+	@rm -f $(NAME)
 
 re : fclean $(NAME)
