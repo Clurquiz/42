@@ -6,10 +6,12 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 14:25:32 by curquiza          #+#    #+#              #
-#    Updated: 2016/11/29 14:25:41 by curquiza         ###   ########.fr        #
+#    Updated: 2016/11/29 14:42:58 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+make re
+echo ""
 
 echo "Test avec un fichier non valide :" 
 ./fillit hello
@@ -27,7 +29,7 @@ echo "Test avec 2 fichiers non valides :"
 ./fillit hello helli
 echo ""
 
-echo "Tests avec inputs imvalides :"
+echo "Tests avec inputs invalides :"
 cpt=0
 file_count=`ls Tests_input_error | wc -l | tr -d " "`
 
