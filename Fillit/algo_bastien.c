@@ -6,26 +6,11 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/28 18:48:20 by baparis          ###   ########.fr       */
+/*   Updated: 2016/11/29 19:25:46 by baparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*int	ft_check_and_place(char **endgrid, t_list lst, int i, int j)
-{
-	int	k;
-
-	k = 0;
-	while (endgrid[k])
-		k++;
-	if (k > 4)
-		return (1);
-	(void)lst;
-	(void)i;
-	(void)j;
-	return (0);
-}*/
 
 int		ft_check_a_position(char **endgrid, t_list lst, int i, int j)
 {
@@ -72,9 +57,6 @@ int		ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 	return (0);
 }
 
-/*
- * Efface les lettres ecrite dans la grid final quand cela n'est pas valide
- */
 void	ft_erase(t_list *lst, char **endgrid)
 {
 	int	i;
@@ -96,6 +78,39 @@ void	ft_erase(t_list *lst, char **endgrid)
 	}
 }
 
+// INITIAL = qui n'avance pas sur endgrid = plus rapide mais faux
+/*int		ft_algo(t_list *lst, char **endgrid)
+{
+	t_list *tmp;
+
+	tmp = lst;
+	while (tmp && tmp->used == 1)
+		tmp = tmp->next;
+	if (!(tmp))
+		return (1);
+	while (tmp)
+	{
+		while (tmp->used == 1 && tmp->next)
+			tmp = tmp->next;
+		if (!(tmp)) //clem
+			return (1); //clem
+		if (tmp->used != 1 && ft_check_and_place(endgrid, *tmp, 0, 0))
+		{
+			//ft_print_tabfile(endgrid);
+			tmp->used = 1;
+			if (!(ft_algo(lst, endgrid)))
+				ft_erase(tmp, endgrid);
+			else
+				return (1);
+		}
+		if (tmp)
+			tmp = tmp->next;
+	}
+	return (0);
+}*/
+
+
+//BASTIEN
 int		ft_algo(t_list *lst, char **endgrid)
 {
 	t_list *tmp;
@@ -111,20 +126,21 @@ int		ft_algo(t_list *lst, char **endgrid)
 		return (1);
 	while (tmp)
 	{
-		while (tmp->used == 1 && tmp->next)
+		while (tmp->used == 1 && tmp->next) //bastien
+		//while (tmp->used == 1 && tmp) //clem
 			tmp = tmp->next;
-		if (!(tmp)) //clem
-			return (1); //clem
-		while (endgrid[i + 2] !=  0 && endgrid[i][j] != '\0')
+		if (!(tmp))
+			return (1);
+		while (endgrid[i + 2] != 0 || endgrid[i][j] != '\0')
 		{
 			if (!(endgrid[i][j]))
 			{
 				i++;
 				j = 0;
 			}
-			if (ft_check_and_place(endgrid, *tmp, i, j - 1) == 1)
+			j++;
+			if (ft_check_and_place(endgrid, *tmp, i, j) == 1)
 			{
-				ft_print_tabfile(endgrid);
 				tmp->used = 1;
 				if (ft_algo(lst, endgrid))
 					return (1);
