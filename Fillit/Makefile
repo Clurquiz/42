@@ -6,7 +6,7 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/11/29 15:25:26 by curquiza         ###   ########.fr        #
+#    Updated: 2016/11/29 17:06:49 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,17 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@$(CC) $^ $(LIB) -o $@
-	@echo "\033[1;32m$(NAME) created\033[0m"
+	@echo "Make $@ : \033[1;32mOK\033[0m"
 
 %.o: %.c
 	@$(CC) -o $@ -c $<
 
 clean :
 	@rm -f $(OBJ)
+	@echo "Make $@ : \033[1;32mOK\033[0m"
 
 fclean : clean
 	@rm -f $(NAME)
+	@echo "Make $@ : \033[1;32mOK\033[0m"
 
 re : fclean $(NAME)
