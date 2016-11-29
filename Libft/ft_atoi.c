@@ -6,11 +6,16 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:20:35 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/07 18:40:08 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/29 15:59:23 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** La vraie fonction atoi ne prend pas en compte tous les caractères invisibles
+** inf. à 32
+*/
 
 int		ft_atoi(const char *str)
 {

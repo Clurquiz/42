@@ -6,11 +6,16 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 16:31:19 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/19 16:07:20 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/29 16:26:17 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** Si src est plus petite que dest (en terme d'adresse, donc de placement dans
+** la mémoire) je remplis par la fin pour éviter les problèmes d'overlap
+*/
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {

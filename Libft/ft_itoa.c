@@ -6,11 +6,16 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 18:59:29 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/20 14:21:17 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/29 16:07:07 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** Si n est nul, ne pas renvoyer juste "0" sinon le char* retourné ne sera pas
+** mallocé
+*/
 
 char			*ft_itoa(int n)
 {

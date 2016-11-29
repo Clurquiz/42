@@ -6,11 +6,15 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:50:10 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/20 14:33:51 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/29 16:23:10 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+** strdup sert à renvoyer une chaine mallocé
+*/
 
 char	*ft_strtrim(char const *s)
 {
