@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/29 17:04:57 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/29 17:14:08 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	ft_erase(t_list *lst, char **endgrid)
 	}
 }
 
+// INITIAL = qui n'avance pas sur endgrid = plus rapide mais faux
 /*int		ft_algo(t_list *lst, char **endgrid)
 {
 	t_list *tmp;
@@ -126,6 +127,8 @@ void	ft_erase(t_list *lst, char **endgrid)
 	return (0);
 }*/
 
+
+//BASTIEN
 int		ft_algo(t_list *lst, char **endgrid)
 {
 	t_list *tmp;
