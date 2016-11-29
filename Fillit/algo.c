@@ -6,26 +6,11 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/29 17:14:08 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/29 17:58:46 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*int	ft_check_and_place(char **endgrid, t_list lst, int i, int j)
-{
-	int	k;
-
-	k = 0;
-	while (endgrid[k])
-		k++;
-	if (k > 4)
-		return (1);
-	(void)lst;
-	(void)i;
-	(void)j;
-	return (0);
-}*/
 
 int		ft_check_a_position(char **endgrid, t_list lst, int i, int j)
 {
@@ -72,9 +57,6 @@ int		ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 	return (0);
 }
 
-/*
- * Efface les lettres ecrite dans la grid final quand cela n'est pas valide
- */
 void	ft_erase(t_list *lst, char **endgrid)
 {
 	int	i;
@@ -144,7 +126,8 @@ int		ft_algo(t_list *lst, char **endgrid)
 		return (1);
 	while (tmp)
 	{
-		while (tmp->used == 1 && tmp->next)
+		//while (tmp->used == 1 && tmp->next) //bastien
+		while (tmp->used == 1 && tmp) //clem
 			tmp = tmp->next;
 		if (!(tmp))
 			return (1);
@@ -157,7 +140,7 @@ int		ft_algo(t_list *lst, char **endgrid)
 			}
 			if (ft_check_and_place(endgrid, *tmp, i, j - 1) == 1)
 			{
-				ft_print_tabfile(endgrid);
+				//ft_print_tabfile(endgrid);
 				tmp->used = 1;
 				if (ft_algo(lst, endgrid))
 					return (1);
