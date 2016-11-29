@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/28 17:42:48 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/29 17:04:57 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_erase(t_list *lst, char **endgrid)
 	}
 }
 
-int		ft_algo(t_list *lst, char **endgrid)
+/*int		ft_algo(t_list *lst, char **endgrid)
 {
 	t_list *tmp;
 
@@ -119,6 +119,47 @@ int		ft_algo(t_list *lst, char **endgrid)
 				ft_erase(tmp, endgrid);
 			else
 				return (1);
+		}
+		if (tmp)
+			tmp = tmp->next;
+	}
+	return (0);
+}*/
+
+int		ft_algo(t_list *lst, char **endgrid)
+{
+	t_list *tmp;
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	tmp = lst;
+	while (tmp && tmp->used == 1)
+		tmp = tmp->next;
+	if (!(tmp))
+		return (1);
+	while (tmp)
+	{
+		while (tmp->used == 1 && tmp->next)
+			tmp = tmp->next;
+		if (!(tmp))
+			return (1);
+		while (endgrid[i + 2] !=  0 && endgrid[i][j] != '\0')
+		{
+			if (!(endgrid[i][j]))
+			{
+				i++;
+				j = 0;
+			}
+			if (ft_check_and_place(endgrid, *tmp, i, j - 1) == 1)
+			{
+				ft_print_tabfile(endgrid);
+				tmp->used = 1;
+				if (ft_algo(lst, endgrid))
+					return (1);
+			}
+			ft_erase(tmp, endgrid);
 		}
 		if (tmp)
 			tmp = tmp->next;
