@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:29:23 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/29 15:05:45 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/30 18:26:01 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ char	*ft_read_and_fill(char *av)
 		buf[ret] = '\0';
 		rslt = ft_strjoin(rslt, buf);
 	}
+	if (close(fd) == -1)
+		return (NULL);
 	return (rslt);
 }
