@@ -6,7 +6,7 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 14:25:32 by curquiza          #+#    #+#              #
-#    Updated: 2016/11/30 11:06:52 by curquiza         ###   ########.fr        #
+#    Updated: 2016/11/30 12:10:19 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,11 @@ echo ""
 
 echo "Tests avec inputs invalides :"
 cpt=0
-file_count=`ls Tests_input_error | wc -l | tr -d " "`
+file_count=`ls Inputs_error | wc -l | tr -d " "`
 
-for file in `ls Tests_input_error`
+for file in `ls Inputs_error`
 do
-	if [ `./fillit Tests_input_error/$file` == "error" ]
+	if [ `./fillit Inputs_error/$file` == "error" ]
 	then
 		let cpt=cpt+1
 	fi
