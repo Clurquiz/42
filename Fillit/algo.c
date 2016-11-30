@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/29 18:18:55 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/30 10:49:24 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void	ft_erase(t_list *lst, char **endgrid)
 	return (0);
 }*/
 
-
 //BASTIEN
 int		ft_algo(t_list *lst, char **endgrid)
 {
@@ -126,21 +125,21 @@ int		ft_algo(t_list *lst, char **endgrid)
 		return (1);
 	while (tmp)
 	{
-		//while (tmp->used == 1 && tmp->next) //bastien
-		while (tmp->used == 1 && tmp) //clem
+		while (tmp->used == 1 && tmp->next) //bastien
+		//while (tmp->used == 1 && tmp) //clem
 			tmp = tmp->next;
 		if (!(tmp))
 			return (1);
-		while (endgrid[i + 2] !=  0 && endgrid[i][j] != '\0')
+		while (endgrid[i + 2] != 0 || endgrid[i][j] != '\0')
 		{
 			if (!(endgrid[i][j]))
 			{
 				i++;
 				j = 0;
 			}
-			if (ft_check_and_place(endgrid, *tmp, i, j - 1) == 1)
+			j++;
+			if (ft_check_and_place(endgrid, *tmp, i, j) == 1)
 			{
-				//ft_print_tabfile(endgrid);
 				tmp->used = 1;
 				if (ft_algo(lst, endgrid))
 					return (1);

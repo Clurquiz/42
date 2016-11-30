@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/29 17:58:13 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/30 10:53:15 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ char	**ft_taballoc(int i)
 
 void	ft_print_tabfile(char **tab)
 {
-	//while (*tab && *(*tab + 3) != '?')
-	while (*tab)
+	while (*tab && *(*tab + 3) != '?')
 	{
-		//ft_putendl(*tab + 2);
-		ft_putendl(*tab);
+		ft_putendl(*tab + 2);
 		tab++;
 	}
 }
