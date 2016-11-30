@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/30 18:33:29 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/30 18:50:23 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		main(int ac, char **av)
 	lst = ft_fill_lst(av[1]);
 	if (!(grid = ft_taballoc(i++)))
 		return (0);
-	while (!(ft_algo(lst, grid)))
+	while (!(ft_algo(lst, grid, 0, 0)))
 		if ((grid = ft_taballoc(i++)) == NULL)
 			return (0);
 	ft_print_tab(grid);

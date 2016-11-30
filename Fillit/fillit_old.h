@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/30 18:52:21 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/30 18:45:47 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ t_list				*ft_fill_lst(char *av);
 int					ft_check_and_place(char **endgrid, t_list lst,
 																int i, int j);
 void				ft_erase(t_list *lst, char **endgrid);
-void				ft_setnextline(int *i, int *j);
-int					ft_algo(t_list *lst, char **gri, int i, int j);
+int					ft_algo(t_list *lst, char **endgrid);
 
 int					ft_check_input(int ac, char **av);
 char				**ft_taballoc(int i);

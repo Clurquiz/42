@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/30 18:50:13 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/11/30 16:22:38 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,14 @@ void	ft_erase(t_list *lst, char **endgrid)
 	}
 }
 
-void	ft_setnextline(int *i, int *j)
-{
-	*i = *i + 1;
-	*j = 0;
-}
-
-int		ft_algo(t_list *lst, char **gri, int i, int j)
+int		ft_algo(t_list *lst, char **endgrid)
 {
 	t_list	*tmp;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	tmp = lst;
 	while (tmp && tmp->used == 1)
 		tmp = tmp->next;
@@ -75,19 +73,28 @@ int		ft_algo(t_list *lst, char **gri, int i, int j)
 		return (1);
 	while (tmp)
 	{
-		while ((gri[i + 2] != 0 || gri[i][j] != '\0') && tmp && tmp->used == 0)
+		while (tmp->used == 1 && tmp)
+			tmp = tmp->next;
+		if (!(tmp))
+			return (1);
+		while (endgrid[i + 2] != 0 || endgrid[i][j] != '\0')
 		{
-			if (!(gri[i][j]))
-				ft_setnextline(&i, &j);
-			if (ft_check_and_place(gri, *tmp, i, ++j) == 1)
+			if (!(endgrid[i][j]))
+			{
+				i++;
+				j = 0;
+			}
+			j++;
+			if (ft_check_and_place(endgrid, *tmp, i, j) == 1)
 			{
 				tmp->used = 1;
-				if (ft_algo(lst, gri, 0, 0))
+				if (ft_algo(lst, endgrid))
 					return (1);
 			}
-			ft_erase(tmp, gri);
+			ft_erase(tmp, endgrid);
 		}
-		tmp = tmp->next;
+		if (tmp)
+			tmp = tmp->next;
 	}
 	return (0);
 }
