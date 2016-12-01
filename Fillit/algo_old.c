@@ -6,12 +6,12 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/12/01 15:29:18 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/01 15:33:37 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** Le fichier algo.c avant la mise à la norme de la fontion ft_algo 
+** Le fichier algo.c avant la mise à la norme de la fontion ft_algo
 */
 
 #include "fillit.h"
