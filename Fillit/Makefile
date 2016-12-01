@@ -6,7 +6,7 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/12/01 12:29:03 by curquiza         ###   ########.fr        #
+#    Updated: 2016/12/01 12:38:04 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ DIR_LIB = libft/
 all : ($LIB) $(NAME)
 
 ($LIB):
-	make re -C $(DIR_LIB)
+	@make re -C $(DIR_LIB)
 
 $(NAME) : $(OBJ)
 	@$(CC) $^ $(LIB) -o $@
