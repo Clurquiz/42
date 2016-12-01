@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/30 18:50:13 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/01 11:15:38 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ void	ft_erase(t_list *lst, char **endgrid)
 	int	i;
 	int	j;
 
-	j = 0;
 	i = 0;
+	j = 0;
 	lst->used = 0;
-	while (endgrid[j])
+	while (endgrid[i])
 	{
-		i = 0;
-		while (endgrid[j][i])
+		j = 0;
+		while (endgrid[i][j])
 		{
-			if (endgrid[j][i] == lst->letter)
-				endgrid[j][i] = '.';
-			i++;
+			if (endgrid[i][j] == lst->letter)
+				endgrid[i][j] = '.';
+			j++;
 		}
-		j++;
+		i++;
 	}
 }
 
