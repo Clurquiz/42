@@ -6,9 +6,13 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/30 18:45:47 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/01 15:31:28 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Le fichier fillit.h avant la mise à la norme de la fontion ft_algo 
+*/
 
 #ifndef FILLIT_H
 # define FILLIT_H
