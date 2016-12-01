@@ -74,17 +74,17 @@ $(NAME) : $(OBJ)
 	@#$(CC) $(SRC_I) $(SRC_II) $(SRC_BONUS) main.c -o prog
 	@ar rc $@ $^
 	@ranlib $@
-	@echo "Make $@ : \033[1;32mOK\033[0m"
+	@echo "Make $@ : \033[1;33mOK\033[0m"
 
 %.o : %.c
 	@$(CC) -c $< -o $@
 
 clean :
 	@rm -f $(OBJ)
-	@echo "Make $@ : \033[1;32mOK\033[0m"
+	@echo "Make $@ : \033[1;33mOK\033[0m"
 
 fclean : clean
 	@rm -f $(NAME) prog
-	@echo "Make $@ : \033[1;32mOK\033[0m"
+	@echo "Make $@ : \033[1;33mOK\033[0m"
 
-re : fclean $(NAME)
+re : fclean all
