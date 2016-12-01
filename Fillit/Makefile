@@ -6,7 +6,7 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/12/01 12:38:04 by curquiza         ###   ########.fr        #
+#    Updated: 2016/12/01 13:02:34 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,12 @@ OBJ = $(SRC:%.c=%.o)
 LIB = $(DIR_LIB)libft.a
 DIR_LIB = libft/
 
-all : ($LIB) $(NAME)
+all : $(NAME)
 
-($LIB):
-	@make re -C $(DIR_LIB)
+$(LIB) :
+	@make -C $(DIR_LIB)
 
-$(NAME) : $(OBJ)
+$(NAME) : $(LIB) $(OBJ)
 	@$(CC) $^ $(LIB) -o $@
 	@echo "Make $@ : \033[1;32mOK\033[0m"
 
