@@ -6,7 +6,7 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/12/01 12:18:44 by curquiza         ###   ########.fr        #
+#    Updated: 2016/12/01 12:29:03 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC = main.c \
 	algo.c
 OBJ = $(SRC:%.c=%.o)
 LIB = $(DIR_LIB)libft.a
-DIR_LIB = Libft/
+DIR_LIB = libft/
 
 all : ($LIB) $(NAME)
 
