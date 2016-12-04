@@ -6,11 +6,16 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 11:28:38 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/30 18:50:23 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/04 13:18:39 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+/*
+** Fonction globale de check de l'input. Affiche l'usage si besoin.
+** Retourne 1 si ok, 0 sinon
+*/
 
 int		ft_check_input(int ac, char **av)
 {
@@ -35,6 +40,11 @@ int		ft_check_input(int ac, char **av)
 		return (0);
 	return (1);
 }
+
+/*
+** Créée la map finale
+** Ajout de 2 colonnes et d'une ligne de '?' pour faciliter le check_and_place
+*/
 
 char	**ft_taballoc(int i)
 {
@@ -64,6 +74,10 @@ char	**ft_taballoc(int i)
 	return (tab);
 }
 
+/*
+** Affiche la map finale sans les '?'
+*/
+
 void	ft_print_tab(char **tab)
 {
 	while (*tab && *(*tab + 3) != '?')
@@ -72,6 +86,12 @@ void	ft_print_tab(char **tab)
 		tab++;
 	}
 }
+
+/*
+** Fait tourner la fonction algo et agrandissant la map de 1 tant qu'aucune
+** solution n'est trouvée
+** Puis imprime la grille
+*/
 
 int		main(int ac, char **av)
 {
