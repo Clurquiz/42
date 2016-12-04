@@ -6,14 +6,15 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/12/04 16:58:46 by curquiza         ###   ########.fr        #
+#    Updated: 2016/12/04 17:51:27 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl
 CC = gcc $(FLAG)
 FLAG = -Wall -Wextra -Werror
-SRC = main.c
+SRC = main.c \
+	  get_next_line.c
 OBJ = $(SRC:%.c=%.o)
 LIB = $(DIR_LIB)/libft.a
 DIR_LIB = libft
