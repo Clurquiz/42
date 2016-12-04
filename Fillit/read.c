@@ -6,14 +6,16 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:29:23 by curquiza          #+#    #+#             */
-/*   Updated: 2016/11/30 18:26:01 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/04 12:50:45 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "fillit.h"
 
+/*
+** Lit l'input et récupère le contenu
+** /!\ Fuites de mémoire car malloc non free dans strjoin
+*/
 char	*ft_read_and_fill(char *av)
 {
 	int		fd;

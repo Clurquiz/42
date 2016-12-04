@@ -6,12 +6,21 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:18:28 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/28 18:04:26 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/04 12:59:08 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+** VÉRIFICATION DU FICHIER INPUT - SUITE
+** Les focntions suivantes se font après un strsplit
+*/
+
+/*
+** Check la longueur des grands blocs (doit être égale à 4)
+** Retourne 1 si ok, 0 sinon
+*/
 int	ft_check_rowlen(char **tab)
 {
 	while (*tab)
@@ -23,6 +32,10 @@ int	ft_check_rowlen(char **tab)
 	return (1);
 }
 
+/*
+** Retourne le nombre de connections d'un bloc '#' en position [i][j]
+** càd le nombre de blocs autour de lui
+*/
 int	ft_checkaround(char **tab, int i, int j)
 {
 	int	cpt;
@@ -39,6 +52,10 @@ int	ft_checkaround(char **tab, int i, int j)
 	return (cpt);
 }
 
+/*
+** Check si le tetri est valide
+** Retorune 1 si ok, 0 sinon
+*/
 int	ft_check_tetriminos(char **tab)
 {
 	int	i;
