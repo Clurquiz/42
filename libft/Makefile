@@ -86,10 +86,10 @@ $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c
 
 clean :
 	@rm -f $(OBJ)
-	@echo "Make $@_libft : \033[1;33mOK\033[0m"
+	@#echo "Make $@_libft : \033[1;33mOK\033[0m"
 
 fclean : clean
 	@rm -f $(NAME) prog
-	@echo "Make $@_libft : \033[1;33mOK\033[0m"
+	@#echo "Make $@_libft : \033[1;33mOK\033[0m"
 
 re : fclean all
