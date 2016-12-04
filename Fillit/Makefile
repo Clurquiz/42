@@ -6,7 +6,7 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/12/01 13:02:34 by curquiza         ###   ########.fr        #
+#    Updated: 2016/12/04 12:08:31 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,13 @@ $(NAME) : $(LIB) $(OBJ)
 
 clean :
 	@make clean -C $(DIR_LIB)
+	@echo "Make $@_libft : \033[1;33mOK\033[0m"
 	@rm -f $(OBJ)
 	@echo "Make $@ : \033[1;32mOK\033[0m"
 
 fclean : clean
 	@make fclean -C $(DIR_LIB)
+	@echo "Make $@_libft : \033[1;33mOK\033[0m"
 	@rm -f $(NAME)
 	@echo "Make $@ : \033[1;32mOK\033[0m"
 
