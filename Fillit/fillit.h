@@ -6,7 +6,7 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:02:40 by baparis           #+#    #+#             */
-/*   Updated: 2016/11/30 18:52:21 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/04 13:04:27 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+/*
+** Fonctions de la libft
+*/
 char				*ft_strjoin(char const *s1, char const *s2);
 void				ft_putendl(char *str);
 size_t				ft_strlen(char *str);
@@ -40,28 +43,46 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strdup(char *s);
 char				*ft_strnew(size_t size);
 
+/*
+** Fonction du fichier read.c
+*/
 char				*ft_read_and_fill(char *av);
 
+/*
+** Focntions du fichier check.c
+*/
 int					ft_check_typeofchar(char *file);
 int					ft_count_bigblocks(char *file);
 int					ft_check_hight(char *file);
 int					ft_check_nbblocks(char *file);
 
+/*
+** Fonctions du fichier check2.c
+*/
 int					ft_check_rowlen(char **tab);
 int					ft_checkaround(char **tab, int i, int j);
 int					ft_check_tetriminos(char **tab);
 
+/*
+** Fonctions du fichier lst_init.c
+*/
 void				ft_lst_pushback(t_list **alst, t_list *new);
 void				ft_fill_tabblock(t_list *lst);
 t_list				*ft_create_elem(char *tetri1d, int num);
 t_list				*ft_fill_lst(char *av);
 
+/*
+** Fonctions du fichier algo.c
+*/
 int					ft_check_and_place(char **endgrid, t_list lst,
 																int i, int j);
 void				ft_erase(t_list *lst, char **endgrid);
 void				ft_setnextline(int *i, int *j);
 int					ft_algo(t_list *lst, char **gri, int i, int j);
 
+/*
+** Fonctions du fichier main.c
+*/
 int					ft_check_input(int ac, char **av);
 char				**ft_taballoc(int i);
 void				ft_print_tab(char **tab);

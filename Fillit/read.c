@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:29:23 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/04 12:50:45 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/04 13:13:16 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** Lit l'input et récupère le contenu
 ** /!\ Fuites de mémoire car malloc non free dans strjoin
 */
+
 char	*ft_read_and_fill(char *av)
 {
 	int		fd;
