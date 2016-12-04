@@ -6,12 +6,16 @@
 /*   By: baparis <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 10:44:30 by baparis           #+#    #+#             */
-/*   Updated: 2016/12/01 11:15:38 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/04 12:45:57 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+/*
+** Verifie que le tetri peut être prositionné dans la grille à
+** l'emplacement [i][j]
+*/
 int		ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 {
 	int		k;
@@ -37,6 +41,9 @@ int		ft_check_and_place(char **endgrid, t_list lst, int i, int j)
 	return (1);
 }
 
+/*
+** Efface de la grille la pièce passée en paramètre
+*/
 void	ft_erase(t_list *lst, char **endgrid)
 {
 	int	i;
@@ -58,12 +65,20 @@ void	ft_erase(t_list *lst, char **endgrid)
 	}
 }
 
+/*
+** Permet de passer à la ligne suivante sur la grile
+** => Permet surtout d'être à la norme
+*/
 void	ft_setnextline(int *i, int *j)
 {
 	*i = *i + 1;
 	*j = 0;
 }
 
+/*
+** Algo qui tente de remplir la grille avec chaque tetri
+** Essaie chaque case de la grille pour chaque tetri tant que ça marche pas
+*/
 int		ft_algo(t_list *lst, char **gri, int i, int j)
 {
 	t_list	*tmp;
