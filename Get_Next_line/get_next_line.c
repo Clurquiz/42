@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 17:34:05 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/05 15:59:56 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/05 16:06:07 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int		get_next_line(const int fd, char **line)
 		buff[ret] = '\0';
 		ft_realloc_and_fill(&(file.content), buff);
 	}
-	
+	if (ret < 0)
+		return (-1);
 	return (ft_fill_line(&file, line));
 }
