@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 17:34:05 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/05 15:59:56 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/05 13:02:56 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,69 +30,51 @@ void	ft_realloc_and_fill(char **dst, char *buff)
 	}
 }
 
-void	ft_init_file(t_file *file, int fd)
+int		ft_check_newline(char *tmp)
 {
-	file->content = NULL;
-	file->fd = fd;
-	file->row = 0;
-}
-
-/*int		ft_check_newline(char *tmp)
-{
-	while (*tmp)
+	while (tmp)
 	{
 		if (*tmp == '\n')
 			return (1);
 		tmp++;
 	}
 	return (0);
-}*/
+}
 
-int		ft_fill_line(t_file *file, char **line)
+void	ft_keep_line(char *tmp)
 {
-	char	*tmp;
-	int		cpt;
-	int		start;
-	int		i;
-
-	cpt = 0;
-	start = 0;
-	i = 0;
-	while (file->content[i] && cpt <= file->row)
+	if (tmp)
 	{
-		if (cpt == file->row - 1)
-		{
-			start = i;
-			cpt++;
-		}
-		if (file->content[i] == '\n')
-			cpt++;
-		i++;
+		while (tmp && *tmp != '\n')
+			tmp++;
+		if (*tmp == '\n')
+			tmp++;
+		*tmp = '\0';
 	}
-	tmp = ft_strsub(file->content, start, i - start);
-	ft_realloc_and_fill(line, tmp);
-	free(tmp);
-	if (file->content[i] == '\0')
-		return (0);
-	else
-		return (1);
 }
 
 int		get_next_line(const int fd, char **line)
 {
 	int				i;
 	char			buff[BUFF_SIZE + 1];
+	char static		*tmp_line;
 	int				ret;
-	static t_file	file;
 
 	i = 0;
 	ret = 0;
-	(file.row)++;
+	//tmp_line = NULL;
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
-		ft_realloc_and_fill(&(file.content), buff);
+		ft_realloc_and_fill(&tmp_line, buff);
+		//if (ft_check_newline(buff) == 1)
+		//	break;
 	}
-	
-	return (ft_fill_line(&file, line));
+	printf("tmp_lin = %s\n", tmp_line);
+	ft_keep_line(tmp_line);
+	printf("tmp_lin = %s\n", tmp_line);
+	ft_realloc_and_fill(line, tmp_line);
+	//free(tmp_line);
+
+	return (0);
 }
