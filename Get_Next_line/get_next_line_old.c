@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 17:34:05 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/06 13:23:16 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/06 13:29:01 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_check_newline(char *tmp)
 
 void	ft_keep_line(char *tmp)
 {
-	if (tmp)
+	if (*tmp)
 	{
 		while (tmp && *tmp != '\n')
 			tmp++;
