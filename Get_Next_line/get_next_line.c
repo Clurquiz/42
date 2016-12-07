@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/07 12:47:42 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/07 13:33:47 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ int		ft_use_endbuff(char **endbuff, char **line)
 	while ((*endbuff)[i] && (*endbuff)[i] != '\n')
 		i++;
 	if ((*endbuff)[i] == '\n')
+	{
 		ret = 1;
-	tmp = ft_strsub(*endbuff, 0, i + 1);
+		tmp = ft_strsub(*endbuff, 0, i + 1);
+	}
+	else
+		tmp = ft_strsub(*endbuff, 0, i);
 	ft_realloc_and_add(line, tmp);
 	ft_strdel(&tmp);
 	if (ft_strchr(*endbuff, '\n'))
@@ -91,64 +95,3 @@ int		get_next_line(const int fd, char **line)
 		return (-1);
 	return (0);
 }
-
-/*int		get_next_line(const int fd, char **line)
-{
-	int			i;
-	int			ret;
-	char		buff[BUFF_SIZE + 1];
-	static char	*endbuff;
-
-	ft_strdel(line);
-	if (ft_use_endbuff(&endbuff, line) == 1)
-		return (1);
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0 && !(ft_strchr(buff, '\n')))
-	{
-		buff[ret] = '\0';
-		ft_realloc_and_add(line, buff);
-	}
-	if (ret < 0)
-		return (-1);
-	buff[ret] = '\0';
-	ft_realloc_and_add(line, buff);
-	if (ft_strrchr(buff, '\n'))
-		ft_realloc_and_add(&endbuff, ft_strchr(buff, '\n') + 1);
-	
-	i = 0;
-	while ((*line)[i] && (*line)[i] != '\n')
-		i++;
-	if ((*line)[i] == '\n')
-		(*line)[i + 1] = '\0';
-	
-	if (ret == 0)
-		return (0);
-	return (1);
-}*/
-
-/*int		get_next_line(const int fd, char **line)
-{
-	int				ret;
-	static char		buff[BUFF_SIZE + 1];
-	int				i;
-
-	ft_strdel(line);
-	if (ft_strrchr(buff, '\n'))
-		ft_realloc_and_add(line, ft_strrchr(buff, '\n') + 1);
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0 && !(ft_strchr(buff, '\n')))
-	{
-		buff[ret] = '\0';
-		ft_realloc_and_add(line, buff);
-	}
-	if (ret < 0)
-		return (-1);
-	buff[ret] = '\0';
-	ft_realloc_and_add(line, buff);
-	i = 0;
-	while ((*line)[i] && (*line)[i] != '\n')
-		i++;
-	if ((*line)[i] == '\n')
-		(*line)[i + 1] = '\0';
-	if (ret == 0)
-		return (0);
-	return (1);
-}*/
