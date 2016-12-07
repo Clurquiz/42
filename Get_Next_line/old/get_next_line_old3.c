@@ -6,21 +6,11 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/07 17:12:17 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:48:44 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	ft_del_and_replace(char **dst, char *scr)
-{
-	if (scr && dst)
-	{
-		ft_strdel(dst);
-		*dst = ft_strdup(scr);
-	}
-}
-
 
 void	ft_realloc_and_add(char **dst, char *src)
 {
@@ -46,16 +36,19 @@ int		ft_use_endbuff(char **endbuff, char **line)
 	char	*tmp;
 	int		ret;
 
-	if (!(*endbuff) || !(**endbuff))
+	if (!(*endbuff))
 		return (0);
 	ret = 0;
 	i = 0;
 	while ((*endbuff)[i] && (*endbuff)[i] != '\n')
 		i++;
 	if ((*endbuff)[i] == '\n')
+	{
 		ret = 1;
-	tmp = ft_strsub(*endbuff, 0, i);
-	ft_strdel(line);
+		tmp = ft_strsub(*endbuff, 0, i + 1);
+	}
+	else
+		tmp = ft_strsub(*endbuff, 0, i);
 	ft_realloc_and_add(line, tmp);
 	ft_strdel(&tmp);
 	if (ft_strchr(*endbuff, '\n'))
@@ -77,26 +70,19 @@ int		get_next_line(const int fd, char **line)
 	static char	*endbuff;
 	char		*tmp;
 	int			i;
-	int			cpt;
 
-	
-	cpt = 0;
+	ft_strdel(line);
+	if (ft_use_endbuff(&endbuff, line) == 1)
+		return (1);
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
-		if (cpt == 0)
-		{
-			ft_strdel(line);
-			if (ft_use_endbuff(&endbuff, line) == 1)
-				return (1);
-			cpt++;
-		}
 		if (ft_strchr(buff, '\n'))
 		{
 			i = 0;
 			while (buff[i] != '\n')
 				i++;
-			tmp = ft_strsub(buff, 0, i);
+			tmp = ft_strsub(buff, 0, i + 1);
 			ft_realloc_and_add(line, tmp);
 			ft_strdel(&tmp);
 			ft_strdel(&endbuff);
@@ -107,9 +93,5 @@ int		get_next_line(const int fd, char **line)
 	}
 	if (ret < 0)
 		return (-1);
-	if (buff[0])
-		return (1);
-	if (ret == 0)
-		return (0);
 	return (0);
 }

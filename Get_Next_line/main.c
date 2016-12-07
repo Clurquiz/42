@@ -33,19 +33,23 @@ int		main(int ac, char **av)
 	printf("line : %s", line);
 	printf("--------------------------\n");*/
 
-	/*while ((ret = get_next_line(fd, &line)) >  0)
+	int		i = 0;
+	while ((ret = get_next_line(fd, &line)) >  0)
 	{	
+		i++;
 		printf("ret = %d\n", ret);
-		printf("line : %s", line);
+		printf("line : %s\n", line);
 		printf("------------------------\n");
+		//ft_strdel(&line);
 	}
 	printf("ret = %d\n", ret);
-	printf("line : %s", line);*/
+	printf("line : %s", line);
+	printf("\ni =  %d", i);
 	
-	while ((ret = get_next_line(fd, &line)) >  0)
+	/*while ((ret = get_next_line(fd, &line)) >  0)
 		printf("%s", line);
 	printf("%s", line);
-	//printf("ret = %d\n", ret);
+	//printf("ret = %d\n", ret);*/
 	
 	/*while (cpt < 5)
 	{
