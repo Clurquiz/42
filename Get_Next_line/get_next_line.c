@@ -6,20 +6,11 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/08 16:28:32 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/08 17:28:38 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	ft_del_and_replace(char **dst, char *scr)
-{
-	if (scr && dst)
-	{
-		ft_strdel(dst);
-		*dst = ft_strdup(scr);
-	}
-}
 
 void	ft_realloc(char **dst, char *src)
 {
@@ -31,9 +22,8 @@ void	ft_realloc(char **dst, char *src)
 			*dst = ft_strdup(src);
 		else
 		{
-			tmp = ft_strdup(*dst);
-			ft_strdel(dst);
-			*dst = ft_strjoin(tmp, src);
+			tmp = *dst;
+			*dst = ft_strjoin(*dst, src);
 			ft_strdel(&tmp);
 		}
 	}
@@ -100,6 +90,7 @@ int		get_next_line(const int fd, char **line)
 			
 			return (1);
 		}
+		//*line = ft_strjoin(*line, buff);
 		ft_realloc(line, buff);
 	}
 	if (ret < 0)
