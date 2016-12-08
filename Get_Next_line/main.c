@@ -31,12 +31,12 @@ int		main(int ac, char **av)
 	{	
 		printf("ret = %d\n", ret);
 		printf("line : %s\n", line);
-		free(line);
+		//free(line);
 		printf("------------------------\n");
 	}
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
-	free(line);
+	//free(line);
 	
 	/*while ((ret = get_next_line(fd, &line)) >  0)
 		printf("%s", line);

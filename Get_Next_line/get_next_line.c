@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/08 16:12:24 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/08 16:28:32 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_del_and_replace(char **dst, char *scr)
 		*dst = ft_strdup(scr);
 	}
 }
-
 
 void	ft_realloc(char **dst, char *src)
 {
@@ -95,8 +94,7 @@ int		get_next_line(const int fd, char **line)
 			ft_realloc(line, tmp);
 			ft_strdel(&tmp);
 			
-			//ft_strdel(&endbuff);
-			//endbuff = NULL;
+			ft_strdel(&endbuff);
 			endbuff = ft_strdup(ft_strchr(buff, '\n') + 1);
 			//ft_realloc(&endbuff, ft_strchr(buff, '\n') + 1);
 			
