@@ -6,14 +6,14 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 17:35:34 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/08 12:47:51 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/08 10:47:51 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 10
 
 # include <stdio.h> //A ENLEVER
 # include <fcntl.h> //A ENLEVER => pour open
@@ -26,6 +26,8 @@
 typedef struct		s_file
 {
 	int		fd;
+	int		end;
+	char	*endbuff;
 	struct s_file	*next;
 }					t_file;
 
