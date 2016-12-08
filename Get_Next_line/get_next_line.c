@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/08 13:34:02 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/08 16:12:24 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,34 @@ void	ft_realloc(char **dst, char *src)
 	}
 }
 
-int		ft_use_endbuff(char *endbuff, char **line)
+int		ft_use_endbuff(char **endbuff, char **line)
 {
 	int		i;
 	char	*tmp;
 
 	if (!line)
 		return (0);
-	if (!endbuff || !(*endbuff))
+	if (!(*endbuff) || !(**endbuff))
 	{
 		*line = ft_strdup("\0");
 		return (0);
 	}
-	if (ft_strchr(endbuff, '\n'))
+	if (ft_strchr(*endbuff, '\n'))
 	{
 		i = 0;
-		while (endbuff[i] != '\n')
+		while ((*endbuff)[i] != '\n')
 			i++;
-		*line = ft_strsub(endbuff, 0, i);
-		tmp = ft_strdup(ft_strchr(endbuff, '\n') + 1);
-		ft_strdel(&endbuff);
-		endbuff = ft_strdup(tmp);
+		*line = ft_strsub(*endbuff, 0, i);
+		tmp = ft_strdup(ft_strchr(*endbuff, '\n') + 1);
+		ft_strdel(endbuff);
+		*endbuff = ft_strdup(tmp);
 		ft_strdel(&tmp);
 		return (1);
 	}	
 	else
 	{
-		*line = ft_strdup(endbuff);
-		ft_strdel(&endbuff);
+		*line = ft_strdup(*endbuff);
+		ft_strdel(endbuff);
 		return (0);
 	}
 	return (0);
@@ -81,7 +81,7 @@ int		get_next_line(const int fd, char **line)
 	int			ret;
 	int			i;
 
-	if (ft_use_endbuff(endbuff, line) == 1)
+	if (ft_use_endbuff(&endbuff, line) == 1)
 		return (1);
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
@@ -110,73 +110,3 @@ int		get_next_line(const int fd, char **line)
 		return (1);
 	return (0);
 }
-/*int		ft_use_endbuff(t_file *file, char **line)
-{
-	int		i;
-	char	*tmp;
-
-	if (!(file->endbuff) || !(line))
-		return (0);
-	i = 0;
-	while (file->endbuff[i] != '\n' && file->endbuff[i])
-		i++;
-	if (file->endbuff[i] == '\n')
-	{
-		*line = ft_strsub(file->endbuff, 0, i);
-		tmp = ft_strdup(ft_strchr(file->endbuff, '\n') + 1);
-		ft_strdel(&(file->endbuff));
-		file->endbuff = ft_strdup(tmp);
-		ft_strdel(&tmp);
-		return (1);
-	}
-	else
-	{
-		printf("plop\n");
-		*line = ft_strsub(file->endbuff, 0, i);
-		printf("i = %d\n", i);
-		if (i == 0)
-			return (0);
-		//if (file->end == 1)
-		//	return (1);
-	}
-	return (0);
-}*/
-
-/*int		get_next_line(const int fd, char **line)
-{
-	static t_file	file;
-	int				ret;
-	char			buff[BUFF_SIZE + 1];
-	char			*tmp;
-	int				i;
-
-	if (ft_use_endbuff(&file, line) == 1)
-		return (1);
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
-	{
-		buff[ret] = '\0';
-		if (ft_strchr(buff, '\n'))
-		{
-			i = 0;
-			while (buff[i] != '\n')
-				i++;
-			tmp = ft_strsub(buff, 0, i);
-			ft_realloc(line, tmp);
-			ft_strdel(&tmp);
-			ft_strdel(&(file.endbuff));
-			file.endbuff = ft_strdup(ft_strchr(buff, '\n') + 1);
-			return (1);
-		}
-		else
-			ft_realloc(line, buff);
-	}
-	if (ret == 0 && file.end == 0)
-	{
-		file.end = 1;
-		return (1);
-	}
-	if (ret < 0)
-		return (-1);
-	*line = ft_strdup("\0");
-	return (0);
-}*/
