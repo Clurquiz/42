@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 17:35:34 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/09 17:21:28 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/09 20:03:15 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct		s_file
 {
 	int				fd;
+	char			*endbuff;
 	struct s_file	*next;
 }					t_file;
 

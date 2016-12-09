@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/09 17:18:38 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/09 19:49:06 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,52 @@ int		ft_use_endbuff(char **endbuff, char **line)
 	return (0);
 }
 
+void	ft_find_or_create(t_file **begin, int fd)
+{
+	t_file	*new;
+	t_file	*current;
+
+	current = *begin;
+	while (current && fd != current->fd)
+		current = current->next;
+	if (current == NULL)
+	{
+		current = *begin;
+		if (!(new = (t_file *)malloc(sizeof(*new))))
+			return ;
+		new->fd = fd;
+		new->endbuff = NULL;
+		new->next = NULL;
+		if (*begin == NULL)
+			*begin = new;
+		else
+		{
+			while (current->next)
+				current = current->next;
+			current->next = new;
+		}
+	}
+}
+
 int		get_next_line(const int fd, char **line)
 {
-	static char	*endbuff;
-	char		buff[BUFF_SIZE + 1];
-	int			ret;
+	static t_file	*file;
+	t_file			*current;
+	char			buff[BUFF_SIZE + 1];
+	int				ret;
 
 	if (!line)
 		return (-1);
-	if (ft_use_endbuff(&endbuff, line) == 1)
+	ft_find_or_create(&file, fd);
+	current = file;
+	while (fd != current->fd)
+		current = current->next;
+	if (ft_use_endbuff(&(current->endbuff), line) == 1)
 		return (1);
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
+	while ((ret = read(current->fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
-		if (ft_use_buff(line, buff, &endbuff) == 1)
+		if (ft_use_buff(line, buff, &(current->endbuff)) == 1)
 			return (1);
 	}
 	if (ret < 0)

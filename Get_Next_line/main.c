@@ -13,8 +13,8 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	
-	//line = ft_strdup("ecole42 => ");
-	line = NULL;
+	line = ft_strdup("ecole42 => ");
+	//line = NULL;
 
 	fd = open(av[1], O_RDONLY);
 
