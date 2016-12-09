@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 17:35:34 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/09 11:55:00 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/09 17:21:28 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,8 @@ typedef struct		s_file
 	struct s_file	*next;
 }					t_file;
 
-/*char				*ft_strdup(char *s);
-char				*ft_strjoin(char const *s1, char const *s2);
-char				*ft_strsub(char const *s, unsigned int start, size_t len);
-void				ft_strdel(char **as);
-char				*ft_strchr(const char *s, int c);*/
-
+int					ft_use_buff(char **line, char *buff, char **endbuff);
+int					ft_use_endbuff(char **endbuff, char **line);
 int					get_next_line(const int fd, char **line);
 
 #endif
