@@ -6,18 +6,22 @@
 #    By: curquiza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 17:08:05 by curquiza          #+#    #+#              #
-#    Updated: 2016/12/05 18:09:29 by curquiza         ###   ########.fr        #
+#    Updated: 2016/12/09 11:53:13 by curquiza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gnl
+
 CC = gcc $(FLAG)
 FLAG = -Wall -Wextra -Werror
+
 SRC = main.c \
 	  get_next_line.c
 OBJ = $(SRC:%.c=%.o)
+
 LIB = $(DIR_LIB)/libft.a
 DIR_LIB = libft
+INCL_LIB = $(DIR_LIB)/includes
 
 all : $(NAME)
 
@@ -25,11 +29,11 @@ $(LIB) :
 	@make -C $(DIR_LIB)
 
 $(NAME) : $(LIB) $(OBJ)
-	@$(CC) $^ $(LIB) -o $@
+	@$(CC) $^ -o $@ -I $(INCL_LIB)
 	@echo "Make $@ : \033[1;32mOK\033[0m"
 
 %.o: %.c
-	@$(CC) -o $@ -c $<
+	@$(CC) -o $@ -c $< -I $(INCL_LIB)
 	@echo "Make $@ : \033[1;32mOK\033[0m"
 
 clean :
