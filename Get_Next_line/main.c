@@ -13,8 +13,8 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	
-	line = ft_strdup("ecole42 => ");
-	//line = NULL;
+	//line = ft_strdup("ecole42 => ");
+	line = NULL;
 
 	fd = open(av[1], O_RDONLY);
 
@@ -33,12 +33,12 @@ int		main(int ac, char **av)
 	{	
 		printf("ret = %d\n", ret);
 		printf("line : %s\n", line);
-		//free(line);
+		free(line);
 		printf("------------------------\n");
 	}
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
-	//free(line);
+	free(line);
 	
 	/*while ((ret = get_next_line(fd, &line)) >  0)
 		printf("%s", line);
