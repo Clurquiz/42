@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 17:35:34 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/08 16:11:35 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/10 21:14:08 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <stdlib.h>
-
-typedef struct		s_file
-{
-	int		fd;
-	struct s_file	*next;
-}					t_file;
 
 char 	*ft_strdup(char *s);
 char	*ft_strnew(size_t size);
