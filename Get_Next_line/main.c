@@ -29,7 +29,7 @@ int		main(int ac, char **av)
 	free(line);
 	printf("--------------------------\n");*/
 	
-	while ((ret = get_next_line(fd, &line)) >  0)
+	/*while ((ret = get_next_line(fd, &line)) >  0)
 	{	
 		printf("ret = %d\n", ret);
 		printf("line : %s\n", line);
@@ -38,12 +38,12 @@ int		main(int ac, char **av)
 	}
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
-	free(line);
+	free(line);*/
 	
-	/*while ((ret = get_next_line(fd, &line)) >  0)
-		printf("%s", line);
+	while ((ret = get_next_line(fd, &line)) >  0)
+		printf("%s\n", line);
 	printf("%s", line);
-	//printf("ret = %d\n", ret);*/
+	//printf("ret = %d\n", ret);
 	
 	/*while (cpt < 5)
 	{
