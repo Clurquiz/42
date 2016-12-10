@@ -6,61 +6,11 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/09 19:49:06 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/10 19:37:37 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int		ft_use_buff(char **line, char *buff, char **endbuff)
-{
-	int		i;
-	char	*tmp_sub;
-	char	*tmp_line;
-
-	if (ft_strchr(buff, '\n'))
-	{
-		i = 0;
-		while (buff[i] != '\n')
-			i++;
-		tmp_sub = ft_strsub(buff, 0, i);
-		tmp_line = *line;
-		*line = ft_strjoin(tmp_line, tmp_sub);
-		ft_strdel(&tmp_line);
-		ft_strdel(&tmp_sub);
-		ft_strdel(endbuff);
-		*endbuff = ft_strdup(ft_strchr(buff, '\n') + 1);
-		return (1);
-	}
-	tmp_line = *line;
-	*line = ft_strjoin(tmp_line, buff);
-	ft_strdel(&tmp_line);
-	return (0);
-}
-
-int		ft_use_endbuff(char **endbuff, char **line)
-{
-	int		i;
-	char	*tmp;
-
-	*line = NULL;
-	if (!(*endbuff) || !(**endbuff))
-		return (0);
-	if (ft_strchr(*endbuff, '\n'))
-	{
-		i = 0;
-		while ((*endbuff)[i] != '\n')
-			i++;
-		*line = ft_strsub(*endbuff, 0, i);
-		tmp = *endbuff;
-		*endbuff = ft_strdup(ft_strchr(*endbuff, '\n') + 1);
-		ft_strdel(&tmp);
-		return (1);
-	}
-	*line = ft_strdup(*endbuff);
-	ft_strdel(endbuff);
-	return (0);
-}
 
 void	ft_find_or_create(t_file **begin, int fd)
 {
@@ -89,6 +39,33 @@ void	ft_find_or_create(t_file **begin, int fd)
 	}
 }
 
+int		ft_work_on_buffers(char *buff, char **endbuff, char **line)
+{
+	int		i;
+	char	*tmp_sub;
+	char	*tmp_line;
+
+	if (!buff)
+		return (0);
+	i = 0;
+	while (buff[i] && buff[i] != '\n')
+		i++;
+	tmp_sub = ft_strsub(buff, 0, i);
+	tmp_line = *line;
+	*line = ft_strjoin(tmp_line, tmp_sub);
+	ft_strdel(&tmp_line);
+	ft_strdel(&tmp_sub);
+	ft_strdel(endbuff);
+	if (ft_strchr(buff, '\n'))
+	{
+		*endbuff = ft_strdup(ft_strchr(buff, '\n') + 1);
+		return (1);
+	}
+	if (**line == '\0')
+		*line = NULL;
+	return (0);
+}
+
 int		get_next_line(const int fd, char **line)
 {
 	static t_file	*file;
@@ -102,12 +79,13 @@ int		get_next_line(const int fd, char **line)
 	current = file;
 	while (fd != current->fd)
 		current = current->next;
-	if (ft_use_endbuff(&(current->endbuff), line) == 1)
+	*line = NULL;
+	if (ft_work_on_buffers(current->endbuff, &(current->endbuff), line) == 1)
 		return (1);
 	while ((ret = read(current->fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
-		if (ft_use_buff(line, buff, &(current->endbuff)) == 1)
+		if (ft_work_on_buffers(buff, &(current->endbuff), line) == 1)
 			return (1);
 	}
 	if (ret < 0)
