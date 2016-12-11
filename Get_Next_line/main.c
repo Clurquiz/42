@@ -18,7 +18,7 @@ int		main(int ac, char **av)
 
 	fd = open(av[1], O_RDONLY);
 
-	ret = get_next_line(fd, &line);
+	/*ret = get_next_line(fd, &line);
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
 	free(line);
@@ -27,9 +27,9 @@ int		main(int ac, char **av)
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
 	free(line);
-	printf("--------------------------\n");
+	printf("--------------------------\n");*/
 	
-	/*while ((ret = get_next_line(fd, &line)) >  0)
+	while ((ret = get_next_line(fd, &line)) >  0)
 	{	
 		printf("ret = %d\n", ret);
 		printf("line : %s\n", line);
@@ -38,21 +38,22 @@ int		main(int ac, char **av)
 	}
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
-	//free(line);*/
+	//free(line);
 	
 	/*while ((ret = get_next_line(fd, &line)) >  0)
+	{
 		printf("%s\n", line);
-	printf("%s", line);
-	//printf("ret = %d\n", ret);*/
+		//free(line);
+	}*/
 	
 	/*while (cpt < 5)
 	{
 		ret = get_next_line(fd, &line);
 		printf("ret = %d\n", ret);
+		printf("%s\n", line);
+		printf("------------------\n");
 		cpt++;
-	}
-	printf("ret = %d\n\n", ret);
-	printf("line :\n%s", line);*/
+	}*/
 
 	if (close(fd) == -1)
 		return (0);

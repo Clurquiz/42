@@ -6,14 +6,14 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 17:35:34 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/10 22:29:24 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/11 12:36:30 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 4
+# define BUFF_SIZE 12
 
 # include <sys/types.h>
 # include <sys/uio.h>
@@ -28,9 +28,9 @@ typedef struct		s_file
 	struct s_file	*next;
 }					t_file;
 
+t_file				*ft_find_or_create(t_file **begin, int fd);
 int					ft_use_buff(char **line, char *buff, char **endbuff);
 int					ft_use_endbuff(char **endbuff, char **line);
-void				ft_find_or_create(t_file **begin, int fd);
 int					get_next_line(const int fd, char **line);
 
 #endif
