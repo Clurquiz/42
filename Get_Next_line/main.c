@@ -1,5 +1,6 @@
 #include "get_next_line.h"
 #include <stdio.h>
+#include <string.h>
 #include <fcntl.h>
 
 int		main(int ac, char **av)
@@ -29,7 +30,7 @@ int		main(int ac, char **av)
 	free(line);
 	printf("--------------------------\n");*/
 	
-	/*while ((ret = get_next_line(fd, &line)) >  0)
+	while ((ret = get_next_line(fd, &line)) >  0)
 	{	
 		printf("ret = %d\n", ret);
 		printf("line : %s\n", line);
@@ -38,13 +39,13 @@ int		main(int ac, char **av)
 	}
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
-	ft_strdel(&line);*/
-	
-	while ((ret = get_next_line(fd, &line)) >  0)
+	ft_strdel(&line);
+
+	/*while ((ret = get_next_line(fd, &line)) >  0)
 	{
 		printf("%s\n", line);
 		ft_strdel(&line);
-	}
+	}*/
 	
 	/*while (cpt < 5)
 	{
