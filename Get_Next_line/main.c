@@ -22,13 +22,19 @@ int		main(int ac, char **av)
 	/*ret = get_next_line(fd, &line);
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
-	free(line);
+	ft_strdel(&line);
 	printf("--------------------------\n");
 	ret = get_next_line(fd, &line);
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
-	free(line);
+	ft_strdel(&line);
+	printf("--------------------------\n");
+	ret = get_next_line(fd, &line);
+	printf("ret = %d\n", ret);
+	printf("line : %s\n", line);
+	ft_strdel(&line);
 	printf("--------------------------\n");*/
+
 	
 	while ((ret = get_next_line(fd, &line)) >  0)
 	{	

@@ -13,7 +13,7 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE 9999
+# define BUFF_SIZE 1
 
 # include <sys/types.h>
 # include <sys/uio.h>
@@ -24,12 +24,12 @@
 typedef struct		s_file
 {
 	int				fd;
-	char			*endbuff;
+	char			*buff;
 	struct s_file	*next;
 }					t_file;
 
 t_file				*ft_find_or_create(t_file **begin, int fd);
-int					ft_work_on_buffers(char *buf, char **endbuff, char **line);
+int					ft_work_with_buff(char *buff, char **line);
 int					get_next_line(const int fd, char **line);
 
 #endif

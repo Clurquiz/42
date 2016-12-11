@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 t_file	*ft_find_or_create(t_file **begin, int fd)
 {
@@ -20,7 +21,8 @@ t_file	*ft_find_or_create(t_file **begin, int fd)
 	if (!(new = (t_file *)malloc(sizeof(*new))))
 		return (NULL);
 	new->fd = fd;
-	new->endbuff = NULL;
+	if (!(new->buff = ft_strnew(BUFF_SIZE)))
+		return (NULL);
 	new->next = NULL;
 	if (*begin == NULL)
 		*begin = new;
@@ -38,29 +40,36 @@ t_file	*ft_find_or_create(t_file **begin, int fd)
 	return (current);
 }
 
-int		ft_work_on_buffers(char *buff, char **endbuff, char **line)
+int		ft_work_with_buff(char *buff, char **line)
 {
 	int		i;
+	int		start;
 	char	*tmp_sub;
 	char	*tmp_line;
 
-	if (!buff)
-		return (0);
+	//if (!buff)
+	//	return (0);
 	i = 0;
-	while (buff[i] && buff[i] != '\n')
+	start = 0;
+	while (i < BUFF_SIZE && *buff != '\n')
+	{
+		if (*buff == '\0')
+			start = i + 1;
+		buff++;
 		i++;
-	tmp_sub = ft_strsub(buff, 0, i);
+	}
+	tmp_sub = ft_strsub(buff - i, start, i - start);
+	//printf("tmp_sub = %s\n", tmp_sub);
 	tmp_line = *line;
 	*line = ft_strjoin(tmp_line, tmp_sub);
 	ft_strdel(&tmp_line);
 	ft_strdel(&tmp_sub);
-	//ft_strdel(endbuff);
-	*endbuff = NULL;
-	//if (ft_strchr(buff, '\n'))
-	if (buff[i] == '\n')
+	printf("*line = %s\n", *line);
+	//*buff = NULL;
+	if (*buff  == '\n')
 	{
-		//*endbuff = ft_strdup(ft_strchr(buff, '\n') + 1);
-		*endbuff = buff + i + 1;
+		printf("plop\n");
+		*buff = '\0';
 		return (1);
 	}
 	if (**line == '\0')
@@ -72,30 +81,26 @@ int		get_next_line(const int fd, char **line)
 {
 	static t_file	*file;
 	t_file			*current;
-	//char			buff[BUFF_SIZE + 1];
-	char			*buff;
 	int				ret;
 
 	if (!line)
 		return (-1);
 	current = ft_find_or_create(&file, fd);
 	*line = NULL;
-	if (ft_work_on_buffers(current->endbuff, &(current->endbuff), line) == 1)
+	if (ft_work_with_buff(current->buff, line) == 1)
 		return (1);
-	buff = ft_strnew(BUFF_SIZE);
-	while ((ret = read(current->fd, buff, BUFF_SIZE)) > 0)
+	while ((ret = read(current->fd, current->buff, BUFF_SIZE)) > 0)
 	{
-		buff[ret] = '\0';
-		if (ft_work_on_buffers(buff, &(current->endbuff), line) == 1)
-		{
-			ft_strdel(&buff);
+		(current->buff)[ret] = '\0';
+		if (ft_work_with_buff(current->buff, line) == 1)
 			return (1);
-		}
 	}
-	ft_strdel(&buff);
 	if (ret < 0)
 		return (-1);
 	if (*line != NULL)
+	{
+		printf("plouf");	
 		return (1);
+	}
 	return (0);
 }
