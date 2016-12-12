@@ -55,12 +55,14 @@ int		main(int ac, char **av)
 	{	
 		printf("ret = %d\n", ret);
 		printf("line : %s\n", line);
-		//ft_strdel(&line);
+		//free(line);
+		ft_strdel(&line);
 		printf("------------------------\n");
 	}
 	printf("ret = %d\n", ret);
 	printf("line : %s\n", line);
-	//ft_strdel(&line);
+	//free(line);
+	ft_strdel(&line);
 
 	/*while ((ret = get_next_line(fd, &line)) >  0)
 	{
