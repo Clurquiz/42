@@ -82,9 +82,9 @@ int		ft_work_with_buff(char *buff, char **line)
 	int		start;
 	char	*tmp_sub;
 	char	*tmp_line;
-	///int		j;
+	/*int		j;
 
-	/*j = 0;
+	j = 0;
 	printf("buff1 = ");
 	while (j <= BUFF_SIZE)
 	{
@@ -98,12 +98,18 @@ int		ft_work_with_buff(char *buff, char **line)
 	start = 0;
 	while (++i < BUFF_SIZE && *(buff) != '\n')
 	{
-		if (*(buff++) == '\0' && *(buff + 1))
+		//if (*(buff++) == '\0' && *(buff + 1))
+		//if (*(buff + 1) && *(buff++) == '\0')
+		//if (*(buff + 1) && *(buff) == '\0') //vrai
+		if (*(buff++) == '\0' && *(buff))
 			start = i + 1;
-		//buff++;
+	//	buff++;
 		//i++;
 	}
 	tmp_sub = ft_strsub(buff - i, start, i - start);
+	//printf("tmp_sub = %s\n", tmp_sub);
+	//printf("i = %d\n", i);
+	//printf("start = %d\n", start);
 	tmp_line = *line;
 	*line = ft_strjoin(tmp_line, tmp_sub);
 	ft_strdel(&tmp_line);
@@ -119,7 +125,7 @@ int		ft_work_with_buff(char *buff, char **line)
 	return (0);
 }
 
-void	ft_remove_file(t_file **begin, int fd)
+/*void	ft_remove_file(t_file **begin, int fd)
 {
 	t_file	*current;
 
@@ -141,8 +147,35 @@ void	ft_remove_file(t_file **begin, int fd)
 		current->next->next = NULL;
 		free(current);
 	}
-}
+}*/
 
+void	ft_remove_file(t_file **begin, int fd)
+{
+	t_file	*current;
+	t_file	*supp;
+
+	(void)supp;
+	current = *begin;
+	if (current->fd == fd)
+	{
+		ft_strdel(&(current->buff));
+		current->fd = -1;
+		*begin = (*begin)->next;
+		current->next = NULL;
+		free(current);
+	}
+	/*else
+	{
+		while (current->next && current->next->fd != fd)
+			current = current->next;
+		supp = current->next;
+		current = supp->next;
+		ft_strdel(&(supp->buff));
+		supp->fd = -1;
+		supp->next = NULL;
+		free(supp);
+	}*/
+}
 
 int		get_next_line(const int fd, char **line)
 {
@@ -150,7 +183,8 @@ int		get_next_line(const int fd, char **line)
 	t_file			*current;
 	int				ret;
 
-	if (!line)
+	//if (!line)
+	if (!line || fd < 0)
 		return (-1);
 	current = ft_find_or_create(&file, fd);
 	*line = NULL;
