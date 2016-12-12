@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/11 18:18:06 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/12 13:12:47 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ int		ft_work_with_buff(char *buff, char **line)
 
 	//if (!buff)
 	//	return (0);
+	/*i = 0;
+	printf("buff = ");
+	while (i <= BUFF_SIZE)
+	{
+		printf("%c", buff[i]);
+		i++;
+	}
+	printf("\n");*/
 	i = 0;
 	start = 0;
 	while (i < BUFF_SIZE && *buff != '\n')
@@ -59,21 +67,29 @@ int		ft_work_with_buff(char *buff, char **line)
 		i++;
 	}
 	tmp_sub = ft_strsub(buff - i, start, i - start);
-	//printf("tmp_sub = %s\n", tmp_sub);
 	tmp_line = *line;
 	*line = ft_strjoin(tmp_line, tmp_sub);
 	ft_strdel(&tmp_line);
 	ft_strdel(&tmp_sub);
-	printf("*line = %s\n", *line);
-	//*buff = NULL;
 	if (*buff  == '\n')
 	{
-		printf("plop\n");
 		*buff = '\0';
 		return (1);
 	}
 	if (**line == '\0')
 		*line = NULL;
+	//ft_bzero(buff, i - start);
+	ft_bzero(buff - i, BUFF_SIZE);
+	
+	//i = 0;
+	//printf("buff = ");
+	//while (i <= BUFF_SIZE)
+	//{
+	//	printf("%c", buff[i]);
+	//	i++;
+	//}
+	//printf("\n");
+
 	return (0);
 }
 
@@ -94,13 +110,15 @@ int		get_next_line(const int fd, char **line)
 		(current->buff)[ret] = '\0';
 		if (ft_work_with_buff(current->buff, line) == 1)
 			return (1);
+		//ft_bzero(current->buff, BUFF_SIZE);
 	}
 	if (ret < 0)
 		return (-1);
 	if (*line != NULL)
 	{
-		printf("plouf");	
+		//printf("plouf");	
 		return (1);
 	}
+	//ft_strdel(&(current->buff));
 	return (0);
 }
