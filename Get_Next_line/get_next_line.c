@@ -6,14 +6,14 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/12 16:48:59 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/12 18:19:41 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
-t_file	*ft_find_or_create(t_file **begin, int fd)
+/*t_file	*ft_find_or_create(t_file **begin, int fd)
 {
 	t_file	*new;
 	t_file	*current;
@@ -38,27 +38,43 @@ t_file	*ft_find_or_create(t_file **begin, int fd)
 		return (current->next);
 	}
 	return (current);
-}
-
-
-/*char	*ft_strsub(char const *s, unsigned int start, size_t len)
-{
-	char	*tmp;
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (!(tmp = ft_strnew(len)))
-		return (NULL);
-	while (s[start + i] != '\0' && i < len)
-	{
-		tmp[i] = s[start + i];
-		i++;
-	}
-	return (tmp);
 }*/
 
+t_file	*ft_create_elem(int fd)
+{
+	t_file	*new;
+
+	if (!(new = (t_file *)malloc(sizeof(*new))))
+		return (NULL);
+	new->fd = fd;
+	if (!(new->buff = ft_strnew(BUFF_SIZE)))
+		return (NULL);
+	new->next = NULL;
+	return (new);
+}
+
+t_file	*ft_find_or_create(t_file **begin, int fd)
+{
+	t_file	*current;
+
+	if (*begin == NULL)
+	{
+		*begin = ft_create_elem(fd);
+		return (*begin);
+	}
+	current = *begin;
+	while (current && fd != current->fd)
+		current = current->next;
+	if (current == NULL)
+	{
+		current = *begin;
+		while (current->next)
+			current = current->next;
+		current->next = ft_create_elem(fd);
+		return (current->next);
+	}
+	return (current);
+}
 
 int		ft_work_with_buff(char *buff, char **line)
 {
@@ -98,10 +114,35 @@ int		ft_work_with_buff(char *buff, char **line)
 		return (1);
 	}
 	if (**line == '\0')
-		*line = NULL;
+		ft_strdel(line);
 	ft_bzero(buff - i, BUFF_SIZE);
 	return (0);
 }
+
+void	ft_remove_file(t_file **begin, int fd)
+{
+	t_file	*current;
+
+	current = *begin;
+	if (current->fd == fd)
+	{
+		ft_strdel(&(current->buff));
+		current->fd = -1;
+		current->next = NULL;
+		free(*begin);
+	}
+	else
+	{
+		while (current->next->fd != fd)
+			current = current->next;
+		ft_strdel(&(current->next->buff));
+		current->next->fd = -1;
+		current->next = current->next->next;
+		current->next->next = NULL;
+		free(current);
+	}
+}
+
 
 int		get_next_line(const int fd, char **line)
 {
@@ -125,6 +166,6 @@ int		get_next_line(const int fd, char **line)
 		return (-1);
 	if (*line != NULL)
 		return (1);
-	ft_strdel(&(current->buff));
+	ft_remove_file(&file, fd);
 	return (0);
 }
