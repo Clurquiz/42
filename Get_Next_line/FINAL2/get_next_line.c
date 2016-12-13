@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/13 16:09:31 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/13 16:55:58 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int		get_next_line(const int fd, char **line)
 	t_file			*current;
 	int				ret;
 
-	if (!line)
+	if (!line || BUFF_SIZE < 0)
 		return (-1);
 	*line = NULL;
 	if (!(current = ft_find_or_create(&file, fd)))
