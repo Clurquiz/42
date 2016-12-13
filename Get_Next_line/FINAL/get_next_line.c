@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/13 13:17:23 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/13 15:45:52 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	ft_remove_file(t_file **begin, int fd)
 	t_file	*current;
 	t_file	*supp;
 
-	(void)supp;
 	current = *begin;
 	if (current->fd == fd)
 	{
