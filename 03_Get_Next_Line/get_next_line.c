@@ -6,11 +6,18 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/13 17:27:31 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/14 17:07:57 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+/*
+** ft_create_elem et ft_find_or_create :
+** Cherche si un maillon contenant le fd existe,
+** sinon créée le maillon et l'ajoute en fin de liste.
+** Vérifie aussi que le fd est sup. à zéro.
+*/
 
 t_file	*ft_create_elem(int fd)
 {
@@ -50,6 +57,11 @@ t_file	*ft_find_or_create(t_file **begin, int fd)
 	return (current);
 }
 
+/*
+** ft_remove_file :
+** En fin de lecture. Supprime le maillon contenant le fd.
+*/
+
 void	ft_remove_file(t_file **begin, int fd)
 {
 	t_file	*current;
@@ -75,6 +87,12 @@ void	ft_remove_file(t_file **begin, int fd)
 		free(supp);
 	}
 }
+
+/*
+** ft_work_with_buff :
+** En fonction du contenu de buff, remplit line puis modifie buff.
+** Retourne 1 si un '\n' est trouvé, 0 sinon.
+*/
 
 int		ft_work_with_buff(char *buff, char **line)
 {
@@ -103,6 +121,19 @@ int		ft_work_with_buff(char *buff, char **line)
 	ft_bzero(buff - i, BUFF_SIZE);
 	return (0);
 }
+
+/*
+** get_next_line :
+** Retourne 1 si une ligne a éte remplie dans line, 0 si le fichier a fini
+** d'être lu, et -1 en cas d'erreur.
+**
+** Le check de BUFF_SIZE n'est pas fait en premier pour que line ait
+** la posibilité d'être re-initialisée => évite les erreurs de double free
+** dans le main et les multi fd.
+**
+** Le dernier check "*line != NULL" permet de ne pas retourner 0 tout de suite
+** si le fichier se termine par une ligne sans '\n'.
+*/
 
 int		get_next_line(const int fd, char **line)
 {
