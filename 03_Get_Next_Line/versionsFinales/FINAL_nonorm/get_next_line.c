@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/13 12:56:46 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/16 10:33:48 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,11 @@ void	ft_remove_file(t_file **begin, int fd)
 		while (current->next && current->next->fd != fd)
 			current = current->next;
 		supp = current->next;
+
+		// pas bon car je ne relie pas le next de current au bon maillon
+		// la place je me deplace sur le maillon d'apres ce qui va merdé qd je vais repasser dessus.
 		//current = supp->next;
+		
 		current->next = current->next->next;
 		ft_strdel(&(supp->buff));
 		supp->fd = -1;
