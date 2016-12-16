@@ -6,7 +6,7 @@
 /*   By: curquiza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 13:24:27 by curquiza          #+#    #+#             */
-/*   Updated: 2016/12/11 15:21:33 by curquiza         ###   ########.fr       */
+/*   Updated: 2016/12/16 12:24:55 by curquiza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		ft_use_endbuff(char **endbuff, char **line)
 /*
 ** Si tu malloc pas le buff, ca merde sur des gros fichiers
 ** Si je strdel le buff, ca efface endbuff
+** En fait, si, ca marche. Pourquoi ca ne marchait pas avant ? Je ne sais pas
 */
 
 int		get_next_line(const int fd, char **line)
@@ -84,9 +85,11 @@ int		get_next_line(const int fd, char **line)
 		buff[ret] = '\0';
 		if (ft_use_buff(line, buff, &endbuff) == 1)
 		{
+			ft_strdel(&buff);
 			return (1);
 		}
 	}
+	ft_strdel(&buff);
 	if (ret < 0)
 		return (-1);
 	if (*line != NULL)
